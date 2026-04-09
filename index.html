@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CCQ Electricien Licence C — Practice Exam</title>
+<meta name="description" content="213 practice questions for the CCQ Electricien Licence C exam. Quebec Electrical Code, 6 exams, instant feedback.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;
+  --surface:#161b22;
+  --surface2:#21262d;
+  --border:#30363d;
+  --border-light:#3d444d;
+  --accent:#2f81f7;
+  --accent-dim:#1c6bdb;
+  --accent-muted:rgba(47,129,247,.12);
+  --text:#e6edf3;
+  --text-2:#c9d1d9;
+  --muted:#8b949e;
+  --green:#3fb950;
+  --green-bg:rgba(63,185,80,.1);
+  --green-border:rgba(63,185,80,.25);
+  --red:#f85149;
+  --red-bg:rgba(248,81,73,.1);
+  --red-border:rgba(248,81,73,.25);
+  --yellow:#d29922;
+  --radius:6px;
+  --radius-lg:10px;
+  --radius-xl:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:15px;line-height:1.6;min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ─── NAV ─── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  border-bottom:1px solid var(--border);
+  background:rgba(13,17,23,.92);
+  backdrop-filter:blur(12px);
+  padding:0 24px;height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo{
+  font-size:11px;font-weight:800;letter-spacing:2.5px;
+  background:var(--accent);color:#fff;
+  padding:4px 9px;border-radius:4px;text-transform:uppercase;
+}
+.nav-title{font-size:14px;font-weight:600;color:var(--text)}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-link{
+  font-size:13px;color:var(--muted);text-decoration:none;
+  padding:6px 12px;border-radius:var(--radius);
+  transition:.12s;font-weight:500;
+}
+.nav-link:hover{color:var(--text);background:var(--surface2)}
+.nav-cta{
+  padding:7px 16px;background:var(--accent);color:#fff;
+  border:none;border-radius:var(--radius);font-size:13px;font-weight:600;
+  font-family:inherit;cursor:pointer;transition:.12s;text-decoration:none;
+  display:flex;align-items:center;gap:6px;
+}
+.nav-cta:hover{background:var(--accent-dim)}
+.nav-cta svg{width:12px;height:12px;fill:currentColor}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:80px 24px 60px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(47,129,247,.15) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 80%, rgba(47,129,247,.06) 0%, transparent 50%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size:60px 60px;
+  opacity:.25;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 70%);
+}
+.hero-inner{position:relative;z-index:1;max-width:680px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:20px;
+  border:1px solid rgba(47,129,247,.3);
+  background:rgba(47,129,247,.08);
+  color:var(--accent);font-size:12px;font-weight:600;
+  letter-spacing:.4px;margin-bottom:28px;
+}
+.hero-badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 8px var(--accent);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{
+  font-size:clamp(36px,7vw,72px);font-weight:900;line-height:1.08;
+  letter-spacing:-2px;margin-bottom:20px;
+}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{
+  font-size:clamp(15px,2.5vw,19px);color:var(--muted);
+  line-height:1.6;max-width:520px;margin:0 auto 40px;font-weight:400;
+}
+.hero-sub strong{color:var(--text-2);font-weight:600}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:56px}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 28px;background:var(--accent);color:#fff;
+  border:none;border-radius:var(--radius-lg);font-size:15px;font-weight:700;
+  font-family:inherit;cursor:pointer;transition:all .15s;
+  box-shadow:0 4px 24px rgba(47,129,247,.35);letter-spacing:.2px;
+  text-decoration:none;
+}
+.btn-primary:hover{background:var(--accent-dim);box-shadow:0 4px 32px rgba(47,129,247,.5);transform:translateY(-1px)}
+.btn-primary svg{width:16px;height:16px;fill:currentColor}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;background:transparent;color:var(--text-2);
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  font-size:15px;font-weight:500;font-family:inherit;cursor:pointer;
+  transition:.15s;text-decoration:none;
+}
+.btn-secondary:hover{border-color:var(--border-light);color:var(--text);background:var(--surface)}
+.hero-stats{
+  display:flex;align-items:center;justify-content:center;
+  gap:0;flex-wrap:wrap;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-xl);overflow:hidden;
+  width:100%;max-width:560px;margin:0 auto;
+}
+.hero-stat{
+  flex:1;min-width:120px;padding:20px 16px;text-align:center;
+  border-right:1px solid var(--border);position:relative;
+}
+.hero-stat:last-child{border-right:none}
+.hero-stat-num{
+  font-size:28px;font-weight:800;color:var(--text);
+  font-variant-numeric:tabular-nums;line-height:1;
+}
+.hero-stat-num span{color:var(--accent)}
+.hero-stat-lbl{font-size:12px;color:var(--muted);margin-top:4px;font-weight:500}
+
+/* ─── FEATURES ─── */
+.section{padding:80px 24px;max-width:1000px;margin:0 auto}
+.section-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--accent);margin-bottom:16px;
+}
+.section h2{
+  font-size:clamp(26px,4vw,40px);font-weight:800;
+  letter-spacing:-1px;margin-bottom:12px;
+}
+.section-sub{font-size:16px;color:var(--muted);max-width:520px;line-height:1.65}
+.features-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:16px;margin-top:40px;
+}
+.feature-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px;
+  transition:border-color .15s;
+}
+.feature-card:hover{border-color:var(--border-light)}
+.feature-icon{
+  width:40px;height:40px;border-radius:var(--radius);
+  background:var(--accent-muted);border:1px solid rgba(47,129,247,.2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;
+}
+.feature-icon svg{width:18px;height:18px;fill:var(--accent)}
+.feature-title{font-size:15px;font-weight:700;margin-bottom:8px}
+.feature-desc{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* ─── DIVIDER ─── */
+.divider-section{
+  border-top:1px solid var(--border);padding:60px 24px;
+  text-align:center;background:var(--surface);
+}
+.divider-inner{max-width:600px;margin:0 auto}
+.divider-section h2{
+  font-size:clamp(22px,3.5vw,34px);font-weight:800;
+  letter-spacing:-.5px;margin-bottom:12px;
+}
+.divider-section p{font-size:15px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+
+/* ─── QUIZ WRAPPER ─── */
+.quiz-section{
+  padding:0 24px 80px;max-width:820px;margin:0 auto;
+}
+.quiz-section-header{
+  padding:48px 0 32px;text-align:center;
+}
+.quiz-section-header h2{
+  font-size:clamp(22px,3.5vw,32px);font-weight:800;
+  letter-spacing:-.5px;margin-bottom:8px;
+}
+.quiz-section-header p{font-size:14px;color:var(--muted)}
+
+/* ─── CONTROLS ─── */
+.controls{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  margin-bottom:20px;padding:14px 16px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+}
+.controls-label{
+  font-size:11px;font-weight:600;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.8px;margin-right:2px;white-space:nowrap;
+}
+.filter-btn{
+  padding:5px 13px;border-radius:4px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);font-size:13px;font-weight:500;
+  font-family:inherit;cursor:pointer;transition:all .12s;
+}
+.filter-btn:hover{color:var(--text);border-color:var(--border-light);background:var(--surface2)}
+.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.spacer{flex:1;min-width:8px}
+.start-btn{
+  padding:8px 20px;background:var(--accent);color:#fff;
+  border:none;border-radius:var(--radius);font-size:13px;font-weight:600;
+  font-family:inherit;cursor:pointer;transition:.12s;letter-spacing:.2px;
+  display:flex;align-items:center;gap:7px;
+}
+.start-btn:hover{background:var(--accent-dim)}
+.start-btn svg{width:13px;height:13px;fill:currentColor}
+
+/* ─── WELCOME ─── */
+.welcome{
+  padding:48px 24px;text-align:center;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+}
+.welcome-heading{font-size:17px;font-weight:700;color:var(--text);margin-bottom:8px}
+.welcome-sub{font-size:13px;color:var(--muted);line-height:1.7;max-width:360px;margin:0 auto}
+.welcome-hint{
+  display:inline-flex;align-items:center;gap:6px;margin-top:18px;
+  padding:7px 16px;background:var(--accent-muted);
+  border:1px solid rgba(47,129,247,.2);border-radius:20px;
+  font-size:12px;color:var(--accent);font-weight:500;
+}
+.welcome-hint svg{flex-shrink:0}
+
+/* ─── PROGRESS ─── */
+.progress-wrap{margin-bottom:20px}
+.progress-info{
+  display:flex;justify-content:space-between;font-size:12px;
+  color:var(--muted);font-weight:500;margin-bottom:8px;
+}
+.progress-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .4s ease}
+
+/* ─── SCORE ROW ─── */
+.score-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.score-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px 12px;text-align:center;
+}
+.score-card .num{font-size:24px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.score-card .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px;font-weight:600}
+.score-card.g .num{color:var(--green)}
+.score-card.r .num{color:var(--red)}
+.score-card.a .num{color:var(--accent)}
+
+/* ─── QUESTION CARD ─── */
+.q-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px 26px;
+  margin-bottom:16px;animation:fadeSlide .2s ease both;
+}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.q-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+.q-num{
+  flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.8px;
+  color:var(--muted);text-transform:uppercase;padding-top:3px;
+  white-space:nowrap;min-width:28px;
+}
+.q-exam{
+  display:inline-block;font-size:10px;font-weight:600;
+  color:var(--accent);letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px;
+}
+.q-text{font-size:15px;line-height:1.7;color:var(--text-2)}
+
+/* ─── OPTIONS ─── */
+.options{display:flex;flex-direction:column;gap:6px}
+.opt-btn{
+  display:flex;align-items:flex-start;gap:12px;padding:11px 14px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--radius);cursor:pointer;text-align:left;
+  color:var(--text-2);font-size:14px;line-height:1.55;
+  transition:border-color .1s,background .1s,color .1s;
+  width:100%;font-family:inherit;
+}
+.opt-btn:hover:not([disabled]){
+  border-color:var(--accent);background:var(--accent-muted);color:var(--text)
+}
+.opt-btn[disabled]{cursor:default}
+.opt-letter{
+  flex-shrink:0;width:24px;height:24px;border-radius:4px;
+  background:var(--border);color:var(--muted);
+  font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .1s,color .1s;
+}
+.opt-btn.correct{border-color:var(--green-border)!important;background:var(--green-bg)!important}
+.opt-btn.correct .opt-letter{background:var(--green);color:#fff}
+.opt-btn.wrong{border-color:var(--red-border)!important;background:var(--red-bg)!important}
+.opt-btn.wrong .opt-letter{background:var(--red);color:#fff}
+.opt-btn.show-correct{border-color:rgba(63,185,80,.3)!important;background:rgba(63,185,80,.04)!important}
+.opt-btn.show-correct .opt-letter{background:rgba(63,185,80,.2);color:#3fb950}
+
+/* ─── REVEAL ─── */
+.reveal-wrap{margin-top:4px}
+.reveal-btn{
+  padding:8px 18px;background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--radius);color:var(--muted);font-size:13px;
+  font-family:inherit;cursor:pointer;transition:.12s;font-weight:500;
+}
+.reveal-btn:hover{border-color:var(--accent);color:var(--accent)}
+.reveal-answer{
+  margin-top:10px;padding:12px 16px;background:var(--green-bg);
+  border:1px solid var(--green-border);border-radius:var(--radius);
+  font-size:13px;color:#3fb950;display:none;
+}
+.reveal-answer.shown{display:block}
+
+/* ─── FEEDBACK ─── */
+.feedback{margin-top:12px;padding:9px 13px;border-radius:var(--radius);font-size:13px;font-weight:500;display:none}
+.feedback.fb-correct{background:var(--green-bg);border:1px solid var(--green-border);color:#3fb950;display:block}
+.feedback.fb-wrong{background:var(--red-bg);border:1px solid var(--red-border);color:var(--red);display:block}
+
+/* ─── NAV BUTTONS ─── */
+.nav-btns{display:flex;gap:8px;margin-top:10px;justify-content:flex-end;flex-wrap:wrap}
+.nav-btn{
+  padding:8px 18px;border-radius:var(--radius);border:1px solid var(--border);
+  background:var(--surface2);color:var(--text-2);font-size:13px;font-weight:500;
+  font-family:inherit;cursor:pointer;transition:.12s;
+}
+.nav-btn:hover{border-color:var(--border-light);color:var(--text)}
+.nav-btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.nav-btn.primary:hover{background:var(--accent-dim)}
+.nav-btn.danger{color:var(--muted)}
+.nav-btn.danger:hover{border-color:var(--red-border);color:var(--red);background:var(--red-bg)}
+
+/* ─── SCREENS ─── */
+#quiz-screen{display:none}
+#end-screen{display:none}
+
+/* ─── END SCREEN ─── */
+.end-hero{
+  text-align:center;padding:40px 20px 28px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-lg);margin-bottom:16px;
+}
+.end-score{
+  font-size:clamp(56px,14vw,96px);font-weight:900;line-height:1;
+  letter-spacing:-2px;font-variant-numeric:tabular-nums;
+}
+.end-label{font-size:14px;color:var(--muted);margin-top:8px;font-weight:500}
+.end-grade{
+  display:inline-flex;align-items:center;gap:6px;margin-top:16px;
+  padding:6px 18px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.8px;
+}
+.end-grade.pass{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.end-grade.fail{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+
+/* ─── REVIEW ─── */
+.review-section{margin-top:32px}
+.review-header{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;
+  color:var(--muted);padding-bottom:12px;border-bottom:1px solid var(--border);
+  margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.review-item{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px 18px;margin-bottom:8px;
+}
+.review-item.rc{border-left:2px solid var(--green)}
+.review-item.rw{border-left:2px solid var(--red)}
+.review-q{font-size:13px;margin-bottom:10px;line-height:1.65;color:var(--text-2)}
+.review-opts{display:flex;flex-direction:column;gap:3px}
+.ro{font-size:12px;padding:5px 10px;border-radius:4px;line-height:1.5;color:var(--muted)}
+.ro.ca{background:var(--green-bg);color:#3fb950;border:1px solid var(--green-border)}
+.ro.uw{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border);text-decoration:line-through;opacity:.7}
+
+/* ─── FOOTER ─── */
+.footer{
+  border-top:1px solid var(--border);padding:40px 24px;
+  text-align:center;
+}
+.footer-inner{max-width:600px;margin:0 auto}
+.footer-brand{
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.footer-logo{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  background:var(--surface2);color:var(--muted);
+  padding:4px 9px;border-radius:4px;text-transform:uppercase;
+  border:1px solid var(--border);
+}
+.footer-name{font-size:14px;font-weight:600;color:var(--muted)}
+.footer-text{font-size:12px;color:var(--muted);line-height:1.7}
+.footer-text a{color:var(--accent);text-decoration:none}
+.footer-divider{width:40px;height:1px;background:var(--border);margin:20px auto}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .features-grid{grid-template-columns:1fr}
+  .hero-stat{min-width:0}
+  .nav-links .nav-link{display:none}
+  .hero h1{letter-spacing:-1.5px}
+}
+@media(max-width:600px){
+  .quiz-section{padding:0 12px 60px}
+  .q-card{padding:16px 18px}
+  .score-row{grid-template-columns:repeat(2,1fr)}
+  .controls{padding:12px}
+  .hero-stats{flex-direction:column}
+  .hero-stat{border-right:none;border-bottom:1px solid var(--border);min-width:100%}
+  .hero-stat:last-child{border-bottom:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-brand" href="#top">
+    <span class="nav-logo">CCQ</span>
+    <span class="nav-title">Electricien &middot; Licence C</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#features">Features</a>
+    <a class="nav-link" href="#quiz">Practice</a>
+    <a class="nav-cta" href="#quiz">
+      <svg viewBox="0 0 16 16"><path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.532l-6.706 4.268A1.5 1.5 0 0 1 3 12.267z"/></svg>
+      Start Exam
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Quebec Electrical Code &mdash; 2024
+    </div>
+    <h1>Pass Your CCQ<br><em>Licence C</em> Exam</h1>
+    <p class="hero-sub">
+      Practice with <strong>213 real exam questions</strong> from 6 official practice exams.
+      Instant feedback, full review, and randomized sessions every time.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#quiz">
+        <svg viewBox="0 0 16 16"><path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.532l-6.706 4.268A1.5 1.5 0 0 1 3 12.267z"/></svg>
+        Start Practicing Now
+      </a>
+      <a class="btn-secondary" href="#features">How it works</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span id="total-count">213</span></div>
+        <div class="hero-stat-lbl">Total Questions</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">6</div>
+        <div class="hero-stat-lbl">Practice Exams</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">60<span>%</span></div>
+        <div class="hero-stat-lbl">Pass Threshold</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">&#8734;</div>
+        <div class="hero-stat-lbl">Free &amp; Offline</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-tag">
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+    How it works
+  </div>
+  <h2>Study smarter,<br>not harder</h2>
+  <p class="section-sub">Everything you need to feel confident walking into the CCQ Licence C exam.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v8A1.5 1.5 0 0 1 13.5 12H9.09l.8 1.683a.75.75 0 0 1-.67 1.087H6.78a.75.75 0 0 1-.67-1.087L6.91 12H2.5A1.5 1.5 0 0 1 1 10.5zm1.5-.5a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5z"/></svg>
+      </div>
+      <div class="feature-title">Randomized Questions</div>
+      <div class="feature-desc">Every session shuffles the question order so you build genuine knowledge, not muscle memory.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+      </div>
+      <div class="feature-title">Instant Feedback</div>
+      <div class="feature-desc">Know immediately if your answer is right or wrong. Correct answers are highlighted so you can learn in the moment.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8z"/></svg>
+      </div>
+      <div class="feature-title">Full Review Mode</div>
+      <div class="feature-desc">After every session, review every question with your answer vs. the correct one highlighted clearly.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 .5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11z"/><path d="M8 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+      </div>
+      <div class="feature-title">Filter by Exam</div>
+      <div class="feature-desc">Focus on a single exam or run all 213 questions across all 6 exams in one marathon session.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 16 16"><path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/></svg>
+      </div>
+      <div class="feature-title">Live Score Tracking</div>
+      <div class="feature-desc">Correct, wrong, score percentage, and remaining questions update in real time as you work through the exam.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 16 16"><path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/></svg>
+      </div>
+      <div class="feature-title">100% Offline</div>
+      <div class="feature-desc">No login, no account, no internet required. Open the file in any browser and it works instantly, forever.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER CTA -->
+<div class="divider-section">
+  <div class="divider-inner">
+    <h2>Ready to test yourself?</h2>
+    <p>Select an exam or run all questions. The quiz randomizes every time so you can repeat as many sessions as you need.</p>
+    <a class="btn-primary" href="#quiz">
+      <svg viewBox="0 0 16 16" style="width:14px;height:14px;fill:currentColor"><path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.532l-6.706 4.268A1.5 1.5 0 0 1 3 12.267z"/></svg>
+      Go to Practice Exam
+    </a>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-section" id="quiz">
+  <div class="quiz-section-header">
+    <h2>Practice Exam</h2>
+    <p>Filter by exam number or run the full 213-question session</p>
+  </div>
+
+  <div id="start-screen">
+    <div class="controls">
+      <span class="controls-label">Filter</span>
+      <button class="filter-btn active" data-filter="all">All Exams</button>
+      <button class="filter-btn" data-filter="1">Exam 1</button>
+      <button class="filter-btn" data-filter="2">Exam 2</button>
+      <button class="filter-btn" data-filter="3">Exam 3</button>
+      <button class="filter-btn" data-filter="4">Exam 4</button>
+      <button class="filter-btn" data-filter="5">Exam 5</button>
+      <button class="filter-btn" data-filter="6">Exam 6</button>
+      <div class="spacer"></div>
+      <button class="start-btn" id="start-btn">
+        <svg viewBox="0 0 16 16"><path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.532l-6.706 4.268A1.5 1.5 0 0 1 3 12.267z"/></svg>
+        Start Quiz
+      </button>
+    </div>
+    <div class="welcome">
+      <div class="welcome-heading">Ready to practice?</div>
+      <div class="welcome-sub">Select an exam filter above or run the full session. Questions are randomized every attempt.</div>
+      <div class="welcome-hint">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+        Pass score: 60% or higher
+      </div>
+    </div>
+  </div>
+
+  <div id="quiz-screen">
+    <div class="progress-wrap">
+      <div class="progress-info">
+        <span id="prog-text">Question 1 of 0</span>
+        <span id="prog-pct">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-card g"><div class="num" id="sc-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-card r"><div class="num" id="sc-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-card a"><div class="num" id="sc-pct">&#8212;</div><div class="lbl">Score</div></div>
+      <div class="score-card"><div class="num" id="sc-remain" style="color:var(--text)">0</div><div class="lbl">Left</div></div>
+    </div>
+    <div id="q-container"></div>
+    <div class="nav-btns">
+      <button class="nav-btn danger" id="quit-btn">Quit</button>
+      <button class="nav-btn" id="skip-btn">Skip</button>
+      <button class="nav-btn primary" id="next-btn" style="display:none">Next &#8594;</button>
+      <button class="nav-btn primary" id="finish-btn" style="display:none">Finish &amp; Review</button>
+    </div>
+  </div>
+
+  <div id="end-screen">
+    <div class="end-hero">
+      <div class="end-score" id="end-pct">&#8212;</div>
+      <div class="end-label" id="end-label">0 correct out of 0</div>
+      <div class="end-grade" id="end-grade">&#8212;</div>
+    </div>
+    <div class="score-row">
+      <div class="score-card g"><div class="num" id="end-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-card r"><div class="num" id="end-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-card"><div class="num" id="end-skipped" style="color:var(--text)">0</div><div class="lbl">Skipped</div></div>
+    </div>
+    <div class="nav-btns">
+      <button class="nav-btn primary" onclick="restartQuiz()">Try Again</button>
+    </div>
+    <div class="review-section">
+      <div class="review-header">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8zM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2z"/></svg>
+        Full Review
+      </div>
+      <div id="review-container"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">CCQ</span>
+      <span class="footer-name">Electricien Licence C</span>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-text">
+      Unofficial practice tool. Questions are sourced from CCQ practice exams.<br>
+      This file is fully self-contained &mdash; no internet required after first load.
+    </p>
+  </div>
+</footer>
+
+.end-label{font-size:14px;color:var(--muted);margin-top:8px;font-weight:500}
+.end-grade{
+  display:inline-flex;align-items:center;gap:6px;margin-top:16px;
+  padding:6px 18px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.8px;
+}
+.end-grade.pass{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.end-grade.fail{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.review-section{margin-top:32px}
+.review-header{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;
+  color:var(--muted);padding-bottom:12px;border-bottom:1px solid var(--border);
+  margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.review-item{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px 18px;margin-bottom:8px;
+}
+.review-item.rc{border-left:2px solid var(--green)}
+.review-item.rw{border-left:2px solid var(--red)}
+.review-q{font-size:13px;margin-bottom:10px;line-height:1.65;color:var(--text-2)}
+.review-opts{display:flex;flex-direction:column;gap:3px}
+.ro{font-size:12px;padding:5px 10px;border-radius:4px;line-height:1.5;color:var(--muted)}
+.ro.ca{background:var(--green-bg);color:#3fb950;border:1px solid var(--green-border)}
+.ro.uw{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border);text-decoration:line-through;opacity:.7}
+@media(max-width:600px){
+  .top-bar{padding:12px 14px}
+  .wrap{padding:0 12px 60px}
+  .q-card{padding:16px 18px}
+  .score-row{grid-template-columns:repeat(2,1fr)}
+  .controls{padding:12px}
+  .brand-sub{display:none}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="brand">
+    <div class="brand-mark">CCQ</div>
+    <div class="brand-text">
+      <span class="brand-name">&#201;lectricien &middot; Licence C</span>
+      <span class="brand-sub">Practice Exam Platform</span>
+    </div>
+  </div>
+  <div class="header-meta">
+    <span class="meta-tag"><span id="total-count">213</span> questions</span>
+    <span class="meta-tag">6 exams</span>
+    <span class="meta-tag">Quebec Electrical Code</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div id="start-screen">
+  <div class="controls">
+    <span class="controls-label">Filter</span>
+    <button class="filter-btn active" data-filter="all">All Exams</button>
+    <button class="filter-btn" data-filter="1">Exam 1</button>
+    <button class="filter-btn" data-filter="2">Exam 2</button>
+    <button class="filter-btn" data-filter="3">Exam 3</button>
+    <button class="filter-btn" data-filter="4">Exam 4</button>
+    <button class="filter-btn" data-filter="5">Exam 5</button>
+    <button class="filter-btn" data-filter="6">Exam 6</button>
+    <div class="spacer"></div>
+    <button class="start-btn" id="start-btn">
+      <svg viewBox="0 0 16 16"><path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.532l-6.706 4.268A1.5 1.5 0 0 1 3 12.267z"/></svg>
+      Start Quiz
+    </button>
+  </div>
+  <div class="welcome">
+    <div class="welcome-heading">Ready to practice?</div>
+    <div class="welcome-sub">Select an exam filter above to focus on specific material, or run all 213 questions in one session. Questions are randomized every attempt.</div>
+    <div class="welcome-hint">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+      Pass score: 60% or higher
+    </div>
+  </div>
+</div>
+
+<div id="quiz-screen">
+  <div class="progress-wrap">
+    <div class="progress-info">
+      <span id="prog-text">Question 1 of 0</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+  <div class="score-row">
+    <div class="score-card g"><div class="num" id="sc-correct">0</div><div class="lbl">Correct</div></div>
+    <div class="score-card r"><div class="num" id="sc-wrong">0</div><div class="lbl">Wrong</div></div>
+    <div class="score-card a"><div class="num" id="sc-pct">&#8212;</div><div class="lbl">Score</div></div>
+    <div class="score-card"><div class="num" id="sc-remain" style="color:var(--text)">0</div><div class="lbl">Left</div></div>
+  </div>
+  <div id="q-container"></div>
+  <div class="nav">
+    <button class="nav-btn danger" id="quit-btn">Quit</button>
+    <button class="nav-btn" id="skip-btn">Skip</button>
+    <button class="nav-btn primary" id="next-btn" style="display:none">Next &#8594;</button>
+    <button class="nav-btn primary" id="finish-btn" style="display:none">Finish &amp; Review</button>
+  </div>
+</div>
+
+<div id="end-screen">
+  <div class="end-hero">
+    <div class="end-score" id="end-pct">&#8212;</div>
+    <div class="end-label" id="end-label">0 correct out of 0</div>
+    <div class="end-grade" id="end-grade">&#8212;</div>
+  </div>
+  <div class="score-row">
+    <div class="score-card g"><div class="num" id="end-correct">0</div><div class="lbl">Correct</div></div>
+    <div class="score-card r"><div class="num" id="end-wrong">0</div><div class="lbl">Wrong</div></div>
+    <div class="score-card"><div class="num" id="end-skipped" style="color:var(--text)">0</div><div class="lbl">Skipped</div></div>
+  </div>
+  <div class="nav">
+    <button class="nav-btn primary" onclick="restartQuiz()">Try Again</button>
+  </div>
+  <div class="review-section">
+    <div class="review-header">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8zM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2z"/></svg>
+      Full Review
+    </div>
+    <div id="review-container"></div>
+  </div>
+</div>
+
+</div>
+<script>const QUESTIONS=[{"id":"e1q1","exam":1,"q_num":1,"question":"Which of the following steps are executed BEFORE the lock-out/tag-out of electrical equipment?","options":{"A":"Verify the presence of voltage on the equipment","B":"Turn off the appropriate safety switches (open the circuit switch) for the equipment","C":"Attempt to start the electrical equipment","D":"Ground all elements of the circuit that may have accumulated electrical energy"},"answer":"B","type":"multiple_choice"},{"id":"e1q2","exam":1,"q_num":2,"question":"Among the following equipment, which can dissipate electrical energy without notice and must be locked-out/tagged-out before performing electrical work? 1) A worm gearbox, 2) A compressor, 3) A hydraulic piston","options":{"A":"1 and 2 only","B":"1 and 3 only","C":"2 and 3 only","D":"1 to 3 (all)"},"answer":"D","type":"multiple_choice"},{"id":"e1q3","exam":1,"q_num":3,"question":"Using the tools below, which would adequately secure a 4×4×1-1/2 electrical box to a steel beam?","options":{"A":"1/4×20 bolt, 1/4×20 tap, 3/8 hole with battery drill","B":"1/4×20 bolt, 1/4×24 tap, 1/4 hole with battery drill","C":"1/4×20 bolt, 1/4×20 tap, 3/16 hole with battery drill","D":"5/16×18 bolt, 5/16×18 tap, 5/16 hole with battery drill"},"answer":"C","type":"multiple_choice"},{"id":"e1q4","exam":1,"q_num":4,"question":"In the illustration showing 600/240/120V, indicate where you would place your voltmeter to have a reading of 120V. (600V HT 3-phase 3-wire transformer bank, secondary 240V 3-phase 3-wire, terminals H1, H2 primary and X1, X2, X3 secondary.)","options":{"A":"X1 and X2","B":"X1 and X3","C":"X1 and X1","D":"X3 and X3"},"answer":"A","type":"multiple_choice"},{"id":"e1q5a","exam":1,"q_num":"5a","question":"Balanced 30 kVA, 600V 3-phase transformer (ratio 2.5): calculate A1, A2, A3 and V1, V2, V3. (Delta-wye transformer, 600V 3-phase primary, 30 kW balanced load on secondary.)","options":{"A":"A1(16.66A), A2(28.90A), V1(600V)","B":"A1(28.90A), A2(16.66A), V2(240V)","C":"A1(16.66A), A2(41.66A), V1(208V)","D":"A2(28.90A), A3(72.25A), V2(120V)"},"answer":"A","type":"multiple_choice"},{"id":"e1q5b","exam":1,"q_num":"5b","question":"Balanced 20 kVA, 600V 3-phase transformer (ratio 2.88): calculate A1, A2, A3 and V1, V2, V3. (Delta-wye transformer, 600V 3-phase primary, 20 kW balanced load at 208V on secondary.)","options":{"A":"A1(11.1A), A2(19.2A), V1(208V)","B":"A1(19.2A), A2(57.7A), V3(208V)","C":"A1(11.0A), A3(55.4A), V1(600V)","D":"A2(33.3A), A3(96A), V2(120V)"},"answer":"A","type":"multiple_choice"},{"id":"e1q6","exam":1,"q_num":6,"question":"Between points X, Y, and Z in the illustration, what would be the total resistance of the circuit? (24V source, 50Ω series, then at point X: 25Ω in parallel with three 25Ω resistors in parallel.)","options":{"A":"25Ω","B":"50Ω","C":"75Ω","D":"100Ω"},"answer":"C","type":"multiple_choice"},{"id":"e1q7","exam":1,"q_num":7,"question":"What would be the total power (watts) of a circuit if the total resistance is 25 ohms with amperage of 30A?","options":{"A":"750W","B":"3.6 kW","C":"22.5 kW","D":"225 kW"},"answer":"C","type":"multiple_choice"},{"id":"e1q8","exam":1,"q_num":8,"question":"Minimum transformer power for surveillance system: Camera 1 (24V AC, 0.25A), Camera 2 (24V AC, 20A), Camera 3 (24V AC, 80A)?","options":{"A":"75 VA","B":"18 VA","C":"24 VA","D":"72 VA"},"answer":"C","type":"multiple_choice"},{"id":"e1q9","exam":1,"q_num":9,"question":"On a circuit using 3 conductors 4/0 RW90 aluminum, what is the maximum distance before a 3% voltage drop? (600V 3-phase panel, 200A supply, 160A 3-phase load at 30°C, Table D3.)","options":{"A":"62m","B":"90m","C":"186m","D":"278m"},"answer":"B","type":"multiple_choice"},{"id":"e1q10","exam":1,"q_num":10,"question":"What is the power of a 5HP single-phase motor at 230V?","options":{"A":"3.7 kW","B":"6.4 kW","C":"11.1 kW","D":"12.9 kW"},"answer":"B","type":"multiple_choice"},{"id":"e1q11","exam":1,"q_num":11,"question":"What is the total power of a three-phase 90A electric hot water tank connected to a 208/120V panel?","options":{"A":"18.7 kW","B":"21.6 kW","C":"32.4 kW","D":"37 kW"},"answer":"C","type":"multiple_choice"},{"id":"e1q12","exam":1,"q_num":12,"question":"Which illustration of an electric hot water tank (240V 1-phase, 4800W, RW90 copper) conforms to the minimum requirements of Quebec Code Chapter V 2018?","options":{"A":"Breaker 20A — Conductor #12 AWG copper","B":"Breaker 25A — Conductor #10 AWG copper","C":"Breaker 30A — Conductor #10 AWG copper","D":"Breaker 40A — Conductor #8 AWG copper"},"answer":"B","type":"multiple_choice"},{"id":"e1q13","exam":1,"q_num":13,"question":"Which motor characteristics conform to Quebec Electrical Code 2018? (RW90 copper, time delay fuse, 30HP motor, 575V, 3-phase, squirrel cage, full voltage start.)","options":{"A":"Time delay fuse: 90A — Conductor #6","B":"Time delay fuse: 50A — Conductor #5","C":"Time delay fuse: 60A — Conductor #8","D":"Time delay fuse: 60A — Conductor #6"},"answer":"B","type":"multiple_choice"},{"id":"e1q14","exam":1,"q_num":14,"question":"When an electrical cable passes through a metal stud supporting gyproc, what is the minimum distance from the edge of the stud to the cable WITHOUT requiring stud protectors?","options":{"A":"6mm","B":"25mm","C":"32mm","D":"51mm"},"answer":"C","type":"multiple_choice"},{"id":"e1q15","exam":1,"q_num":15,"question":"What are the required colors used to identify conductors in a flexible metal conduit with characteristics of 600V 3-phase?","options":{"A":"Red / Black / Blue","B":"Red / Black / Blue / Green","C":"Red / Black / Blue / White","D":"Red / Black / Blue / White / Green"},"answer":"B","type":"multiple_choice"},{"id":"e1q16","exam":1,"q_num":16,"question":"What is the minimum bend radius measured from the surface of an EMT or PVC conduit for an armed cable of 24mm at 600V?","options":{"A":"144mm","B":"152mm","C":"252mm","D":"432mm"},"answer":"C","type":"multiple_choice"},{"id":"e1q17","exam":1,"q_num":17,"question":"Which installations conform to the code for a cable with non-metallic sheath in an apartment located 1m to 2m from the floor? 1) Wires installed vertically, 2) Wires horizontal but mechanically protected, 3) Wires horizontal with at least 32mm from the outside wall edge","options":{"A":"1 and 2 only","B":"1 and 3 only","C":"2 and 3 only","D":"1 to 3 (all)"},"answer":"C","type":"multiple_choice"},{"id":"e1q18","exam":1,"q_num":18,"question":"What is the maximum allowed spacing between supports for a 16mm (1/2 inch) rigid PVC conduit? (Options show first attachment and spacing to junction box.)","options":{"A":"1.5m first, 1m to junction box","B":"750mm first, 300mm to junction box","C":"750mm first, 750mm to junction box","D":"2m first, 2m to junction box"},"answer":"C","type":"multiple_choice"},{"id":"e1q19","exam":1,"q_num":19,"question":"Minimum size liquid-tight flexible metal conduit for: 9 conductors 12 AWG RW90XLPE 600V without jacket + 8 conductors 10 AWG RW90XLPE 600V without jacket?","options":{"A":"21mm (3/4 inch)","B":"27mm (1 inch)","C":"35mm (1-1/4 inch)","D":"41mm (1-1/2 inch)"},"answer":"C","type":"multiple_choice"},{"id":"e1q20","exam":1,"q_num":20,"question":"For two rigid metal conduits on a common wall support between 2 junction boxes, what is the maximum spacing between supports if conduits are 53mm (2\") and 35mm (1-1/4\")?","options":{"A":"300mm","B":"1.5m","C":"2m","D":"3m"},"answer":"B","type":"multiple_choice"},{"id":"e1q21","exam":1,"q_num":21,"question":"If the maximum temperature of the equipment is not identified, what temperature conductor must you use if the equipment is rated for 150 amps?","options":{"A":"60°C","B":"75°C","C":"90°C","D":"110°C"},"answer":"B","type":"multiple_choice"},{"id":"e1q22","exam":1,"q_num":22,"question":"How many wires must you count in an electrical box where all conductors are 14 AWG? (Box with EMT entries, 2 wires and 8 wires entering, with a receptacle connected.)","options":{"A":"8 wires","B":"9 wires","C":"11 wires","D":"13 wires"},"answer":"C","type":"multiple_choice"},{"id":"e1q23","exam":1,"q_num":23,"question":"What is the minimum volume the device box must have for: two 14/2 NMD cables entering a box with a switch installed (device depth 3cm)?","options":{"A":"173mL","B":"199mL","C":"220mL","D":"270mL"},"answer":"C","type":"multiple_choice"},{"id":"e1q24","exam":1,"q_num":24,"question":"For a pull box with two conduits in a straight line, what is the minimum size (X) box required if the conduit diameter is 78mm?","options":{"A":"468mm","B":"546mm","C":"624mm","D":"700mm"},"answer":"C","type":"multiple_choice"},{"id":"e1q25","exam":1,"q_num":25,"question":"For a pull box with two conduits at an angle, calculate the minimum distance (X) between the two 63mm conduits.","options":{"A":"106mm","B":"318mm","C":"371mm","D":"424mm"},"answer":"B","type":"multiple_choice"},{"id":"e1q26","exam":1,"q_num":26,"question":"Minimum spacing between two cable trays 610mm (24\") wide with cables of 53mm (2 inch)?","options":{"A":"Vertical: 150mm — Horizontal: 300mm","B":"Vertical: 150mm — Horizontal: 600mm","C":"Vertical: 300mm — Horizontal: 300mm","D":"Vertical: 300mm — Horizontal: 600mm"},"answer":"D","type":"multiple_choice"},{"id":"e1q27","exam":1,"q_num":27,"question":"Determine the admissible amperage percentage for 6 cables with 4 conductors (3-phase + 1 neutral) of the same size, installed parallel with equal spacing on a cable tray.","options":{"A":"60%","B":"70%","C":"80%","D":"100%"},"answer":"B","type":"multiple_choice"},{"id":"e1q28","exam":1,"q_num":28,"question":"For the installation of a service entrance box (66\" / 1676mm), which of the following are requirements of the code?","options":{"A":"A vertical working space of 2m above the meter box","B":"A lateral space of minimum 610mm (2ft)","C":"A minimum working space of 1.5M in front of the panel","D":"Height of safety switch maximum 1.5M above finished floor"},"answer":"B","type":"multiple_choice"},{"id":"e1q29","exam":1,"q_num":29,"question":"Installing a 45 kVA transformer, 600V primary, 240/120V secondary. Minimum size ground conductor on secondary if primary and secondary wires are aluminum?","options":{"A":"6 AWG Copper","B":"4 AWG Copper","C":"3 AWG Copper","D":"1 AWG Copper"},"answer":"A","type":"multiple_choice"},{"id":"e1q30","exam":1,"q_num":30,"question":"Which types of joints can be used for a ground rod in a HUMID environment? 1) Lead welded joint, 2) Ground clamp, 3) Compression clamp in aluminum, 4) Friction weld (Cadweld)","options":{"A":"4 only","B":"1 and 2 only","C":"2 and 4 only","D":"2, 3, and 4 only"},"answer":"A","type":"multiple_choice"},{"id":"e1q31","exam":1,"q_num":31,"question":"Determine the minimum size aluminum bonding conductor (conduit A) for: 600V panel → conduit A → 25 kVA 600V transformer → secondary 120V/208V panel.","options":{"A":"10 AWG","B":"8 AWG","C":"6 AWG","D":"4 AWG"},"answer":"A","type":"multiple_choice"},{"id":"e1q32","exam":1,"q_num":32,"question":"Among the following, which assures proper bonding? 1) Omnibus bar, 2) Aluminium conductors, 3) Rigid metallic conduit, 4) Flexible metallic conduit","options":{"A":"1 and 2 only","B":"2 and 4 only","C":"1, 2, and 3 only","D":"1, 3, and 4 only"},"answer":"C","type":"multiple_choice"},{"id":"e1q33","exam":1,"q_num":33,"question":"Minimum height of a spool rack above finished grade if conductors pass over a pedestrian-only area over a 20M span?","options":{"A":"4.1m (13.5ft)","B":"4.8m (15.8ft)","C":"5.0m (16.4ft)","D":"8.0m (26.2ft)"},"answer":"B","type":"multiple_choice"},{"id":"e1q34","exam":1,"q_num":34,"question":"Minimum size RW90 copper conductors for an apartment service: main switch 600A, 120V/240V, 540A load at the centre de mesurage?","options":{"A":"4/0 AWG","B":"3/0 AWG","C":"2/0 AWG","D":"250 KCMIL"},"answer":"B","type":"multiple_choice"},{"id":"e1q35","exam":1,"q_num":35,"question":"While on a service call, what is the minimum nominal acceptable voltage for equipment on a 120V-240V supply?","options":{"A":"110V-220V","B":"110V-250V","C":"125V-250V","D":"200V-250V"},"answer":"A","type":"multiple_choice"},{"id":"e1q36","exam":1,"q_num":36,"question":"For installation of an aerial 200-amp entrance, under what conditions does the 750mm measurement apply?","options":{"A":"Minimum distance between the spool rack and the roof","B":"Minimum distance between the spool rack and the F cap","C":"Minimum distance between the supply connection and a window","D":"Minimum length of wire necessary for connection of the supply wires"},"answer":"B","type":"multiple_choice"},{"id":"e1q37","exam":1,"q_num":37,"question":"What is the minimum number of spool racks necessary for a 240/120V 400A monophase customer connection?","options":{"A":"1","B":"2","C":"3","D":"4"},"answer":"A","type":"multiple_choice"},{"id":"e1q38","exam":1,"q_num":38,"question":"For a fire alarm system, which type(s) of detector will SOUND when detecting smoke? 1) Ionization detector, 2) Thermal photoelectric detector, 3) Sealed photoelectric detector, 4) Thermostatic bi-metallic detector","options":{"A":"1 and 2 only","B":"1 and 3 only","C":"2 and 4 only","D":"3 and 4 only"},"answer":"B","type":"multiple_choice"},{"id":"e1q39","exam":1,"q_num":39,"question":"According to the alarm system diagrams, which illustration(s) conform? (Left: FT4 Wall with junction box on edge of each wall. Right: Fire Alarm Conduit configuration.)","options":{"A":"Left diagram only (FT4 Wall with junction box)","B":"Right diagram only (Fire Alarm Conduit)","C":"Both diagrams","D":"Neither diagram"},"answer":"B","type":"multiple_choice"},{"id":"e1q40","exam":1,"q_num":40,"question":"In an alarm system, what is the maximum distance from an emergency exit door that a fire detector must be located (measured from door edge to detector center)?","options":{"A":"1500mm","B":"1800mm","C":"2000mm","D":"2300mm"},"answer":"D","type":"multiple_choice"},{"id":"e1q41","exam":1,"q_num":41,"question":"Among the following, indicate the components of an intrusion system: 1) A door contact, 2) A flashing light, 3) A glass break detector, 4) A lockout access system","options":{"A":"1 and 2 only","B":"1 and 3 only","C":"3 and 4 only","D":"1, 3, and 4 only"},"answer":"D","type":"multiple_choice"},{"id":"e1q42","exam":1,"q_num":42,"question":"For an intrusion alarm system, which zone needs to be programmed to act IMMEDIATELY once an area has been penetrated?","options":{"A":"A delayed zone","B":"The detection zone","C":"A surveillance 24hr zone","D":"An instantaneous zone"},"answer":"D","type":"multiple_choice"},{"id":"e1q43","exam":1,"q_num":43,"question":"In a domotique system, what types of components communicate between the applications and the control panel? 1) Cable, 2) Mixdus, 3) Communication IP, 4) Neutral X10","options":{"A":"1 and 2 only","B":"1 and 4 only","C":"2 and 3 only","D":"2 and 4 only"},"answer":"D","type":"multiple_choice"},{"id":"e1q44","exam":1,"q_num":44,"question":"According to the name plate (Model XP2-46, V: 120/208, A: 21, PH: 3, Hz: 60, kW: 7.5), which CSA approved twist-lock receptacle configuration is correct?","options":{"A":"Diagram 1","B":"Diagram 2 — L21-30R","C":"Diagram 3","D":"Diagram 4"},"answer":"B","type":"multiple_choice"},{"id":"e1q45","exam":1,"q_num":45,"question":"Among the following cables, which possesses the required characteristics for an above-ground supporting neutral connection?","options":{"A":"NS90","B":"RW90","C":"T90","D":"TECK 90"},"answer":"A","type":"multiple_choice"},{"id":"e1q46","exam":1,"q_num":46,"question":"For which type of outlet are you NOT REQUIRED to use an anti-arc (AFCI) circuit breaker?","options":{"A":"Counter plug","B":"Corridor plug","C":"Plug located in a car port","D":"A plug in a kitchen more than 1.8m from the counter"},"answer":"D","type":"multiple_choice"},{"id":"e1q47a","exam":1,"q_num":"47a","question":"Regroup these charges for best phase balance in a 347/600V 3-phase distribution: Charge #1=3.0kW 347V heating; Charge #2=4.0kW 347V heating; Charge #3=2.8kW 347V lighting; Charge #4=7.5kW 600V 3-phase heating; Charge #5=2.5kW 347V misc; Charge #6=3.8kW 347V lighting","options":{"A":"Phase A: 1,3,4 / Phase B: 3,4 / Phase C: 2,6,4","B":"Phase A: 1,3,4 / Phase B: 3,4 / Phase C: 2,5,4","C":"Phase A: 1,4 / Phase B: 5,2,4 / Phase C: 3,6,4","D":"Phase A: 1,6,4 / Phase B: 3,4 / Phase C: 2,5,4"},"answer":"D","type":"multiple_choice"},{"id":"e1q47b","exam":1,"q_num":"47b","question":"Which schematic allows the best phase balance for a 3-phase distribution panel? (A: 48/34/37, B: 46/44/35, C: 41/38/44, D: 41/40/42)","options":{"A":"Schematic A (A=48, B=34, C=37)","B":"Schematic B (A=46, B=44, C=35)","C":"Schematic C (A=41, B=38, C=44)","D":"Schematic D (A=41, B=40, C=42)"},"answer":"D","type":"multiple_choice"},{"id":"e1q48","exam":1,"q_num":48,"question":"Which of the following is a requirement for an outlet used for maintenance of equipment on the roof?","options":{"A":"A receptacle having configuration 5-15R","B":"A receptacle protected by a circuit breaker","C":"A receptacle protected from mechanical damage","D":"A receptacle located more than 7.5m from the electrical equipment on the roof"},"answer":"C","type":"multiple_choice"},{"id":"e1q49","exam":1,"q_num":49,"question":"Which code complies with the norms for installation of electrical lighting? A) Max voltage drop for autonomous light fixture is 10%; B) Autonomous fixture must be installed permanently if nominal voltage exceeds 250V; C) Autonomous fixture must be installed so it cannot turn on automatically; D) Receptacles for autonomous fixtures must be at least 1.5m above floor","options":{"A":"A only","B":"B only","C":"C only","D":"D only"},"answer":"B","type":"multiple_choice"},{"id":"e1q50","exam":1,"q_num":50,"question":"Which lighting illustration does NOT conform to the code? (Options show different wiring configurations with 20A breakers, 12 AWG and 14 AWG conductors and fluorescent fixtures.)","options":{"A":"Diagram A","B":"Diagram B","C":"Diagram C","D":"Diagram D"},"answer":"D","type":"multiple_choice"},{"id":"e1q51","exam":1,"q_num":51,"question":"Which illustration is accurate for electrical heating? (Fuse loaded to 80%, voltage 240V. Options show heating circuits with various resistances and 20A breakers.)","options":{"A":"Diagram A","B":"Diagram B","C":"Diagram C","D":"Diagram D"},"answer":"A","type":"multiple_choice"},{"id":"e1q52","exam":1,"q_num":52,"question":"Electric furnace schematic: if relay S4 becomes defective and no longer functions, which scenario will occur? (5kW elements HTR1–HTR4, relay S4, thermostat TH, sequencer S, APS autoventilateur, HS, HL)","options":{"A":"Only HTR1 will function","B":"HTR1, HTR2, HTR3 will function","C":"All units will function on low voltage","D":"All units will function"},"answer":"B","type":"multiple_choice"},{"id":"e1q53a","exam":1,"q_num":"53a","question":"Forced draught furnace control diagram: at what kW will the furnace operate on thermostat command only if the heating switch is ON? (Four 5kW elements HTR, relay/sequencer S, thermostat TH, APS, HS, HL)","options":{"A":"5 kW","B":"10 kW","C":"15 kW","D":"20 kW"},"answer":"D","type":"multiple_choice"},{"id":"e1q53b","exam":1,"q_num":"53b","question":"Electric furnace schematic: if relay S2 becomes defective and no longer works, what would be the total power of the unit? (Four 5kW elements HTR, sequencer S2, thermostat TH, APS, HS, HL)","options":{"A":"0 watts","B":"5 kW","C":"10 kW","D":"15 kW"},"answer":"B","type":"multiple_choice"},{"id":"e1q54","exam":1,"q_num":54,"question":"What is the maximum distance that must be respected between the safety switch and an air conditioner or refrigerator?","options":{"A":"1m","B":"3m","C":"5m","D":"9m"},"answer":"D","type":"multiple_choice"},{"id":"e1q55","exam":1,"q_num":55,"question":"A squirrel-cage motor starting with direct power at 575V, 3-phase, 30HP. What is the maximum permitted circuit breaker?","options":{"A":"40A","B":"45A","C":"80A","D":"90A"},"answer":"C","type":"multiple_choice"},{"id":"e1q56","exam":1,"q_num":56,"question":"Among the following, which component can be used on an OUTPUT of an automated control system?","options":{"A":"An emergency stop","B":"A level sensor","C":"A photoelectric sensor","D":"An electromagnetic valve"},"answer":"D","type":"multiple_choice"},{"id":"e1q57","exam":1,"q_num":57,"question":"Which illustration adequately represents a motor functioning in REVERSE? (Diagrams show motor control ladder diagrams with Forward/Rev selector, MR contactor, MF contactor.)","options":{"A":"Top diagram (Forward/Emergency, MF-H, MR-H contactors)","B":"Bottom diagram (Fwd/Rev, MR-H, MF-H contactors)","C":"Diagram C","D":"Diagram D"},"answer":"B","type":"multiple_choice"},{"id":"e1q58","exam":1,"q_num":58,"question":"On an analogue control system, what would be the amperage measured from a 4–20mA level sensor if the tank is EMPTY?","options":{"A":"0mA","B":"4mA","C":"16mA","D":"20mA"},"answer":"B","type":"multiple_choice"},{"id":"e1q59","exam":1,"q_num":59,"question":"Industrial entrance: 347/600V 3-phase. Machine requires 3-phase 72A at 208V. What is the minimum transformer size needed?","options":{"A":"15 kVA","B":"25 kVA","C":"30 kVA","D":"45 kVA"},"answer":"C","type":"multiple_choice"},{"id":"e1q60","exam":1,"q_num":60,"question":"What is the maximum current output from the secondary of a monophase transformer 112.5 kVA, 600V/120V/240V?","options":{"A":"104A","B":"150A","C":"280A","D":"375A"},"answer":"D","type":"multiple_choice"},{"id":"e2q10","exam":2,"q_num":10,"question":"What is the power of a single phase motor 5HP at 230v?","options":{"A":"3.7 kW","B":"6.4 kW","C":"11.1 kW","D":"12.9 kW"},"answer":"B","type":"multiple_choice"},{"id":"e2q11","exam":2,"q_num":11,"question":"Calculate the amperage of a hot water tank that is 20 kW powered by 600V 3 phase.","options":{"A":"19.3A","B":"24A","C":"33.3A","D":"57.7A"},"answer":"A","type":"multiple_choice"},{"id":"e2q12","exam":2,"q_num":12,"question":"A branch circuit powered by a dry type transformer that is 37.5 kVA monophase, 600V on the primary, and 120/240V on the secondary. If we install the overcurrent protection device uniquely on the primary side of the transformer, what would be the capacity of this device?","options":{"A":"70A","B":"80A","C":"100A","D":"200A"},"answer":"B","type":"multiple_choice"},{"id":"e2q13","exam":2,"q_num":13,"question":"According to the heating load, which of the following installations conforms to the minimum requirements of the Code de Construction du Quebec Chapter 5 Electrical 2018? (Max terminal temp 75°C — RW90 copper, 240V 1-phase, 20 kW heating)","options":{"A":"125A breaker, conductors 3 AWG","B":"125A breaker, conductors 4 AWG","C":"100A breaker, conductors 4 AWG","D":"110A breaker, conductors 2 AWG"},"answer":"B","type":"multiple_choice"},{"id":"e2q14","exam":2,"q_num":14,"question":"When a cable without metallic sheathing is exposed (NMD 90), under which situation do we NOT have to provide mechanical protection?","options":{"A":"When a cable passes through a floor","B":"When the cable is installed behind a baseboard","C":"The cable is situated more than 1.5m above the finished floor","D":"The cable descends from the ceiling and enters a device box situated at 300mm above the floor"},"answer":"C","type":"multiple_choice"},{"id":"e2q15","exam":2,"q_num":15,"question":"What color tape is obligatory when taping conductors for 600V three phase when installed in a rigid PVC conduit?","options":{"A":"Red, Black, Blue","B":"Red, Black, Blue, Green","C":"Red, Black, Blue, White","D":"Red, Black, Blue, White, Green"},"answer":"B","type":"multiple_choice"},{"id":"e2q16","exam":2,"q_num":16,"question":"An armed cable 1 conductor 3 AWG (Copper) is installed. What is the maximum length between two pull boxes if the voltage is unknown?","options":{"A":"15m","B":"35m","C":"45m","D":"100m"},"answer":"C","type":"multiple_choice"},{"id":"e2q17","exam":2,"q_num":17,"question":"When installing a neutral conductor in a conduit, up to what size must you ensure that the conductor is identified continuously white, grey or by three white stripes along the entire length?","options":{"A":"3 AWG","B":"2 AWG","C":"1 AWG","D":"1/0 AWG"},"answer":"C","type":"multiple_choice"},{"id":"e2q18","exam":2,"q_num":18,"question":"What is the maximum spacing between two fixations (1st and 2nd clip) installed on a metallic rigid conduit with the nominal dimension of 27mm (1 inch)?","options":{"A":"1.5m from first attachment, 1.5m to junction box","B":"1.5m from first attachment, 300mm to junction box","C":"2m from first attachment, 1m to junction box","D":"2m from first attachment, 2m to junction box"},"answer":"D","type":"multiple_choice"},{"id":"e2q19","exam":2,"q_num":19,"question":"What is the minimum size flexible waterproof non-metallic conduit required to insert the following 17 conductors: 9 conductors (solid) 12 AWG RW90 XLPE 600V without envelope; 8 conductors (stranded) 10 AWG RW90 XLPE 600V without envelope?","options":{"A":"21mm (3/4 inch)","B":"27mm (1 inch)","C":"35mm (1-1/4 inch)","D":"41mm (1-1/2 inch)"},"answer":"C","type":"multiple_choice"},{"id":"e2q20","exam":2,"q_num":20,"question":"To install two conduits onto a common support on a wall between two junction boxes, what is the maximum length between supports when one rigid PVC conduit is 63mm (2-1/2 inch) and the other is EMT 16mm (1/2 inch)?","options":{"A":"First support 1m, following supports 1.5m","B":"First support 1m, following supports 1.8m","C":"First support 1.5m, following supports 1.5m","D":"First support 1.8m, following supports 1.8m"},"answer":"A","type":"multiple_choice"},{"id":"e2q21","exam":2,"q_num":21,"question":"The maximum termination temperatures for electrical equipment is rated at 90°C, and the cable used is 2/0 AWG RW90XLPE. Which temperature column in tables 2 and 4 should be used according to the Electrical Code Chapter 5, 2018 edition?","options":{"A":"60°C","B":"75°C","C":"90°C","D":"110°C"},"answer":"C","type":"multiple_choice"},{"id":"e2q22","exam":2,"q_num":22,"question":"How many wires should be calculated when choosing a device box to complete the following installation? (Diagram shows a box with two 14/3 NMD cables entering, connected to receptacles with a ground wire.)","options":{"A":"8 wires","B":"9 wires","C":"10 wires","D":"11 wires"},"answer":"B","type":"multiple_choice"},{"id":"e2q23","exam":2,"q_num":23,"question":"Calculate the total volume of a device box with the following conductors entering: 14 AWG from top, 14 AWG from side, 12 AWG (×3) and 14 AWG from left side, all connecting to receptacles. Box depth: 2.85cm.","options":{},"answer":"347mL","type":"written"},{"id":"e2q24","exam":2,"q_num":24,"question":"For a pull box in a straight line, what is the minimum (X) size of the pull box necessary if the conduit to be installed is 129mm?","options":{"A":"774mm","B":"903mm","C":"1032mm","D":"1132mm"},"answer":"C","type":"multiple_choice"},{"id":"e2q25","exam":2,"q_num":25,"question":"For a pull box where two conduits change direction, what is the minimum size pull box necessary if one conduit is trade size 53mm and the second is trade size 35mm?","options":{"A":"263mm","B":"333mm","C":"353mm","D":"318mm"},"answer":"C","type":"multiple_choice"},{"id":"e3q1","exam":3,"q_num":1,"question":"When planning electrical work, which of the following steps must be done BEFORE locking out electrical equipment?","options":{"A":"Measure the voltage on the equipment","B":"Open the circuit breakers or safety switches that control the equipment","C":"Attempt to start the equipment","D":"Ground all elements of the circuit that may have stored electrical energy"},"answer":"B","type":"multiple_choice"},{"id":"e3q2","exam":3,"q_num":2,"question":"Among the following mechanical equipment, which can discharge energy without notice and must be locked out and tagged out before performing electrical work? 1) An industrial motor, 2) A pneumatic valve, 3) A commercial grade fan","options":{"A":"1 and 2","B":"1 and 3","C":"2 and 3","D":"1, 2 and 3 (all)"},"answer":"D","type":"multiple_choice"},{"id":"e3q3","exam":3,"q_num":3,"question":"Which of the following lists of tools are adequate to properly thread (tapping) for the installation of an electrical panel?","options":{"A":"Bolt 5/16×18 with tap 3/8×16, battery drill with 3/4\" bit","B":"Bolt 5/16×18 with tap 1/4\"×24, battery drill with bit","C":"Bolt 3/8×16 with tap 5/16×18, battery drill with 5/16\" bit","D":"Bolt 3/8×16 with tap 3/8×16 and drill 5/16"},"answer":"B","type":"multiple_choice"},{"id":"e3q4","exam":3,"q_num":4,"question":"In the following illustration showing 600V/240/120V, at which point would you put a multimeter to have a reading of 120V? (Diagram shows transformer bank HT 3-phase 3-wire primary, 240V 3-phase 3-wire secondary, taps AX1, AX2, AX3, BX1, BX2, BX3, CX1, CX2, CX3, X1 and neutral point.)","options":{"A":"AX1 and AX3","B":"AX3 and BX2","C":"BX1 and CX3","D":"CX1 and CX3"},"answer":"B","type":"multiple_choice"},{"id":"e3q5","exam":3,"q_num":5,"question":"Transformer with ratio 2.88, 20 kVA equivalent load. V = voltmètre, A = ampèremètre. What are the correct readings on A1, A2, A3, V1, V2, V3?","options":{"A":"A1 (11.1A) A2 (19.2A) V1 (208V)","B":"A1 (19.2A) A2 (57.7A) V3 (208V)","C":"A1 (11.1A) A3 (55.4A) V1 (600V)","D":"A2 (33.3A) A3 (96A) V2 (120V)"},"answer":"C","type":"multiple_choice"},{"id":"e3q6","exam":3,"q_num":6,"question":"When measuring between points (X) and (Y), what would be the resistance of the circuit between test point 3 and the point d'origine? (Diagram: 24V circuit with motor (M) and three 25-ohm resistors in a combination circuit, with labeled test points.)","options":{"A":"10 ohm","B":"25 ohm","C":"50 ohm","D":"100 ohm"},"answer":"A","type":"multiple_choice"},{"id":"e3q7","exam":3,"q_num":7,"question":"What is the total resistance of the circuit if the voltage is 120V and the power is 12 kW?","options":{"A":"1.2 ohm","B":"12 ohm","C":"100 ohm","D":"12 k ohm"},"answer":"A","type":"multiple_choice"},{"id":"e3q8","exam":3,"q_num":8,"question":"Knowing that an overcurrent breaker cannot be loaded to more than 80%, what is the total power that can be put on if the breaker is 30 amps 208V 3-phase?","options":{"A":"4.99 kW","B":"6.04 kW","C":"8641.2 W","D":"10.80 kW"},"answer":"C","type":"multiple_choice"},{"id":"e3q9","exam":3,"q_num":9,"question":"What is the maximum allowable voltage drop in a feeder or branch circuit?","options":{"A":"1%","B":"3%","C":"5%","D":"6%"},"answer":"B","type":"multiple_choice"},{"id":"e3q10","exam":3,"q_num":10,"question":"What is the secondary amperage of a transformer with characteristics of 112 kVA, 600/240/120V?","options":{"A":"310A","B":"467A","C":"807A","D":"933A"},"answer":"B","type":"multiple_choice"},{"id":"e3q11","exam":3,"q_num":11,"question":"Calculate the primary amperage of a 112.5 kVA transformer connected to 600V three phase.","options":{"A":"108.4A","B":"187.5A","C":"312.3A","D":"540.9A"},"answer":"A","type":"multiple_choice"},{"id":"e3q12","exam":3,"q_num":12,"question":"For the installation of 347V fluorescent lighting in a commercial building, which of the following installations conforms with the minimum requirements of the Quebec Electrical Code Chapter V, 2018?","options":{"A":"15A breaker / 14 AWG / Fluorescent","B":"20A breaker / 12 AWG / Fluorescent","C":"30A / 10 AWG / Fluorescent","D":"40A breaker / 8 AWG / Fluorescent"},"answer":"B","type":"multiple_choice"},{"id":"e3q13","exam":3,"q_num":13,"question":"According to the connected heating load, which meets the minimum requirements of the Quebec Electrical Code Chapter V, 2018? (RW90 Copper, 600V 3-phase, 30 kW load)","options":{"A":"Breaker 30A, conductor 10 AWG","B":"Breaker 35A, conductor 8 AWG","C":"Breaker 40A, conductor 10 AWG","D":"Breaker 45A, conductor 8 AWG"},"answer":"D","type":"multiple_choice"},{"id":"e3q14","exam":3,"q_num":14,"question":"When a cable penetrates through wood supporting gyproc, what is the minimum spacing necessary between the back of the gyproc and the cable, so as to NOT have to use protective metal plates?","options":{"A":"19mm","B":"25mm","C":"32mm","D":"38mm"},"answer":"C","type":"multiple_choice"},{"id":"e3q15","exam":3,"q_num":15,"question":"What are the tape colors required for a 347/600V three-phase installation in a flexible metallic tubing?","options":{"A":"Red, Black, Blue","B":"Red, Black, Blue, Green","C":"Red, Black, Blue, White","D":"Red, Black, Blue, White, Green"},"answer":"D","type":"multiple_choice"},{"id":"e3q16","exam":3,"q_num":16,"question":"What is the minimum curve radius measured from the interior surface of the conduit for an armed cable with a diameter of 28mm at 600V?","options":{"A":"168mm","B":"294mm","C":"420mm","D":"504mm"},"answer":"B","type":"multiple_choice"},{"id":"e3q17","exam":3,"q_num":17,"question":"Which of the following criteria apply to cables installed under steel decks of a roofing system according to Quebec Electrical Code Chapter V, 2018? 1) An armed cable may be installed at 32mm under the steel deck. 2) An armed cable may be installed in the visible portion of the steel deck. 3) A rigid metallic conduit can be installed in the visible portion of the steel deck.","options":{"A":"1 only","B":"3 only","C":"1 and 3 only","D":"1, 2 and 3 (all)"},"answer":"B","type":"multiple_choice"},{"id":"e4q1","exam":4,"q_num":1,"question":"When following normal lock-out procedures on an electrical circuit, place the following in logical order: 1) Turn the equipment off. 2) Turn off the energy source and all residual energy. 3) Cut off all sources of power providing power to the equipment. 4) Lock out the sources of energy to prevent re-energization. 5) Try to start the equipment or verify using a multimeter to ensure it is not energized.","options":{"A":"1-3-2-5-4","B":"3-1-2-4-5","C":"1-3-4-2-5","D":"3-1-4-2-5"},"answer":"A","type":"multiple_choice"},{"id":"e4q2","exam":4,"q_num":2,"question":"Which of the following equipment can dissipate stored energy without notice and must be locked-out-tagged-out before commencing electrical work? 1) A freight elevator, 2) A microwave system, 3) A pneumatic cylinder","options":{"A":"1 and 2 only","B":"1 and 3 only","C":"2 and 3 only","D":"1, 2 and 3"},"answer":"D","type":"multiple_choice"},{"id":"e4q3","exam":4,"q_num":3,"question":"You are modifying an existing installation and must install a PVC box with an EMT conduit on a cement structure. The path is: 3000mm top, 600mm left, 600mm bottom-left, 2000mm bottom. 3 conductors 12 AWG (2 hot, 1 neutral). What is the MINIMUM quantity of material necessary (without waste)?","options":{"A":"6.2M EMT, 18.6M #12 AWG, 1 green #14, 2 ground bushings, 5 clips, 2 couplings, 4 connectors, 1 box/cover, 7 Tapcon screws, 1 drill bit, 7 Marrettes","B":"6.2M EMT, 20.4M #12 AWG, 1 green #14, 2 ground bushings, 5 clips, 1 coupling, 4 connectors, 1 box/cover, 7 Tapcon screws, 1 drill bit, 10 Marrettes","C":"6.2M EMT, 18.6M #12 AWG, 7 clips, 1 coupling, 4 connectors, 1 box/cover, 9 Tapcon screws, 1 drill bit, 9 Marrettes","D":"6.2M EMT, 20.4M #12 AWG, 1 green #14, 2 ground bushings, 7 clips, 1 coupling, 4 connectors, 1 drill bit, 9 Marrettes"},"answer":"D","type":"multiple_choice"},{"id":"e4q4","exam":4,"q_num":4,"question":"In the illustration showing 600/240/120V, indicate where you would place your voltmeter to have a reading of 240V. (Diagram shows HT 3ø 3-wire transformer, H1/H2 windings A, B, C with X1/X2/X3 secondaries — 240V 3ø 3-wire output)","options":{"A":"Ax1 and Bx1","B":"Ax1 and Bx2","C":"Bx1 and Cx3","D":"Bx2 and Cx3"},"answer":"A","type":"multiple_choice"},{"id":"e4q5","exam":4,"q_num":5,"question":"According to the transformer diagram (delta-wye, ratio 2.88, 600V 3ø primary, 15 kW balanced load), which configuration reading is correct?","options":{"A":"A1 (83A), A2 (14.4A), V1 (347V)","B":"A1 (14.4A), A2 (43.3A), V2 (120V)","C":"A2 (25A), A3 (72A), V3 (208V)","D":"A1 (8.3A), A3 (41.6A), V1 (600V)"},"answer":"D","type":"multiple_choice"},{"id":"e4q6","exam":4,"q_num":6,"question":"According to the diagram, if we connect points X and Z, what would the voltage read between test point 1 and its point of origin? (Diagram: 24V source, 50Ω resistor, point X, 25Ω resistors in circuit, point Z, test points 1, 2, 3)","options":{"A":"6V","B":"12V","C":"16V","D":"24V"},"answer":"B","type":"multiple_choice"},{"id":"e4q7","exam":4,"q_num":7,"question":"What would the measured amperage be if the circuit had 75 ohms with 3,500 watts?","options":{"A":"6.8A","B":"46.7A","C":"66.7A","D":"12.4A"},"answer":"A","type":"multiple_choice"},{"id":"e4q8","exam":4,"q_num":8,"question":"To supply a surveillance camera system, what is the minimum transformer power? Camera 1: 24V AC, 0.25A; Camera 2: 12V AC, 0.20A; Camera 3: 24V AC, 0.30A","options":{"A":"0.75 VA","B":"15.6 VA","C":"24 VA","D":"60 VA"},"answer":"C","type":"multiple_choice"},{"id":"e4q9","exam":4,"q_num":9,"question":"In a circuit supplied by 2 conductors #14 AWG RW90 copper, what is the maximum distance between the panel and the load before having a 3% voltage drop? (15A panel, 30°C, 12A load at 240V 1-phase)","options":{"A":"4.9M","B":"14.7M","C":"29.4M","D":"36.6M"},"answer":"C","type":"multiple_choice"},{"id":"e4q10","exam":4,"q_num":10,"question":"What is the amperage on the primary side of a monophase 112 kVA transformer 600V/240/120V?","options":{"A":"187A","B":"323A","C":"467A","D":"933A"},"answer":"C","type":"multiple_choice"},{"id":"e4q11","exam":4,"q_num":11,"question":"Calculate the amperage on the primary side of a 3-phase transformer 112 kVA at 600V.","options":{"A":"108.3A","B":"187.5A","C":"312.3A","D":"540.9A"},"answer":"A","type":"multiple_choice"},{"id":"e4q12","exam":4,"q_num":12,"question":"120V lights are installed in an apartment. Which of the following installations conforms to the minimum requirements of the code?","options":{"A":"15A breaker, 14 AWG wire, luminaire","B":"15A breaker, 12 AWG wire, luminaire","C":"20A breaker, 12 AWG wire, luminaire","D":"30A breaker, 10 AWG wire, luminaire"},"answer":"A","type":"multiple_choice"},{"id":"e4q13","exam":4,"q_num":13,"question":"According to the load characteristics (37.5 kVA transformer, RW90 copper, 31 kW load, 600V primary/120/240V secondary, monophase), which illustration conforms to code requirements?","options":{"A":"Breaker 40A, #8 AWG","B":"Breaker 50A, #6 AWG","C":"Breaker 70A, #4 AWG","D":"Breaker 80A, #4 AWG"},"answer":"A","type":"multiple_choice"},{"id":"e4q14","exam":4,"q_num":14,"question":"When a wire without metallic protection is exposed, which of the following situations would NOT require mechanical protection?","options":{"A":"The wire travels through a floor","B":"The cable passes through the ceiling straight into a light fixture","C":"The cable exits a baseboard heater and passes into the ceiling","D":"The cable is situated at 1.2M above the floor in a parking area"},"answer":"B","type":"multiple_choice"},{"id":"e4q15","exam":4,"q_num":15,"question":"What are the colors you MUST use to identify conductors for a three-phase 600V EMT raceway?","options":{"A":"Red, Black, Blue","B":"Red, Black, White, Green","C":"Red, Black, Blue, White","D":"Red, Black, Blue, White, Green"},"answer":"A","type":"multiple_choice"},{"id":"e4q16","exam":4,"q_num":16,"question":"If you install an armored cable 3c/#3 copper in a conduit, what is the MAXIMUM spacing between two points if the voltage values are unknown?","options":{"A":"15M","B":"35M","C":"45M","D":"You are not allowed to perform this installation"},"answer":"A","type":"multiple_choice"},{"id":"e4q17","exam":4,"q_num":17,"question":"With regards to installing a Neutral Conductor in a raceway, until which size must it be identified by a continuous white, grey or three white stripes throughout its length?","options":{"A":"2 AWG","B":"2/0 AWG","C":"4/0 AWG","D":"500 KCMIL"},"answer":"A","type":"multiple_choice"},{"id":"e4q18","exam":4,"q_num":18,"question":"What is the maximum distances for supporting clips (first and following) for a rigid PVC conduit trade size 35mm?","options":{"A":"1.5m first clip, 1m following clips","B":"1.2m first clip, 1m following clips","C":"750mm first clip, 750mm following clips","D":"1.2m first clip, 1.2m following clips"},"answer":"C","type":"multiple_choice"},{"id":"e4q19","exam":4,"q_num":19,"question":"What is the MINIMUM size EMT conduit required to install 8 conductors: 6×2 AWG RW90 XLPE without jacket + 2×6 AWG TWN 75?","options":{"A":"27mm (1 inch)","B":"35mm (1-1/4 inch)","C":"41mm (1-1/2 inch)","D":"53mm (2 inch)"},"answer":"C","type":"multiple_choice"},{"id":"e4q20","exam":4,"q_num":20,"question":"To support two rigid metallic conduits on a common wall support between two junction boxes, what is the MAXIMUM distance between supports for conduit sizes 53mm (2 inch) and 35mm (1-1/4 inch)?","options":{"A":"First Clip: 300mm, Following Clip: 1.5m","B":"First Clip: 1.5m, Following Clip: 1.5m","C":"First Clip: 2m, Following Clip: 2m","D":"First Clip: 3m, Following Clip: 3m"},"answer":"B","type":"multiple_choice"},{"id":"e4q21","exam":4,"q_num":21,"question":"What is the minimum size PVC rigid conduit used to insert a Teck cable of 53mm diameter?","options":{"A":"53mm","B":"63mm","C":"78mm","D":"91mm"},"answer":"B","type":"multiple_choice"},{"id":"e4q22","exam":4,"q_num":22,"question":"How many wires would be calculated when choosing a device box for this installation? (Diagram: 2×12 AWG, 2×12 AWG, 3×12 AWG cables entering box with outlet and switch — plinthe électrique)","options":{"A":"7 wires","B":"9 wires","C":"11 wires","D":"12 wires"},"answer":"B","type":"multiple_choice"},{"id":"e4q23","exam":4,"q_num":23,"question":"What is the minimum volume a device box must have for: 2×12 NMD and 2×12 NMD cables entering box with a switch?","options":{"A":"201mL","B":"222mL","C":"259mL","D":"287mL"},"answer":"C","type":"multiple_choice"},{"id":"e4q24","exam":4,"q_num":24,"question":"Calculate the minimum spacing X for a pull box with conduit entering at an angle — conduit diameter 53mm, cable 4/0 stranded.","options":{"A":"151mm","B":"204mm","C":"301mm","D":"316mm"},"answer":"D","type":"multiple_choice"},{"id":"e4q25","exam":4,"q_num":25,"question":"Determine the MINIMUM distance between two conduits of trade size 41mm when using a pull box as a U-pull.","options":{"A":"82mm","B":"246mm","C":"287mm","D":"328mm"},"answer":"B","type":"multiple_choice"},{"id":"e4q26","exam":4,"q_num":26,"question":"What is the MINIMUM distance to respect between a cable tray and the ceiling?","options":{"A":"150mm","B":"300mm","C":"600mm","D":"1000mm"},"answer":"B","type":"multiple_choice"},{"id":"e4q27","exam":4,"q_num":27,"question":"What is the MAXIMUM admissible current when using a cable tray containing 3 cables (2 live, 1 neutral) of 4/0 AWG copper at 75°C, installed in parallel with spacing equal to cable diameter?","options":{"A":"184A","B":"195A","C":"230A","D":"250A"},"answer":"A","type":"multiple_choice"},{"id":"e4q28","exam":4,"q_num":28,"question":"In the illustration for installation of a distribution panel, which of the following is true and conforms to code requirements?","options":{"A":"A vertical usable space (z) of minimum 2.4m (8 feet)","B":"A lateral usable space (x) of minimum 610mm (2 feet)","C":"A minimum usable space of 1 meter in front of the panel","D":"The height (y) of the main breaker has a maximum of 2m (6'5\") from finished floor"},"answer":"C","type":"multiple_choice"},{"id":"e4q29","exam":4,"q_num":29,"question":"For a monophase transformer of 10 kVA, 600V primary, 120V secondary, what is the minimum size GROUND CONDUCTOR on the secondary side if it is mechanically protected and the ground rod is pre-fabricated?","options":{"A":"8 AWG copper","B":"6 AWG copper","C":"4 AWG copper","D":"1 AWG copper"},"answer":"B","type":"multiple_choice"},{"id":"e4q31","exam":4,"q_num":31,"question":"Determine the MINIMUM size of aluminum conductor necessary between the panel and a 575V 3ø motor (77A) if the raceway is PVC.","options":{"A":"10 AWG","B":"8 AWG","C":"6 AWG","D":"4 AWG"},"answer":"C","type":"multiple_choice"},{"id":"e4q33","exam":4,"q_num":33,"question":"Determine the MINIMUM height of a spool rack above ground if the triplex passes over a driveway for a length of 15M (49 feet).","options":{"A":"4.7m (16.4 feet)","B":"5.4m (17.7 feet)","C":"5.6m (18.4 feet)","D":"8m (26.2 feet)"},"answer":"A","type":"multiple_choice"},{"id":"e4q34","exam":4,"q_num":34,"question":"For a commercial installation, determine the MINIMUM size of conductors for 200A service at 120/240V.","options":{"A":"3/0 AWG","B":"4/0 AWG","C":"250 kcmil","D":"350 kcmil"},"answer":"A","type":"multiple_choice"},{"id":"e4q35","exam":4,"q_num":35,"question":"Following a service call to a client, which of the following requires a Hydro-Quebec intervention when the nominal voltage is 120/240V?","options":{"A":"112/222","B":"110/220","C":"116/226","D":"106/212"},"answer":"D","type":"multiple_choice"},{"id":"e4q36","exam":4,"q_num":36,"question":"When completing a service entrance of 200 amps, under which circumstance would the 750mm measurement be applied?","options":{"A":"The minimum distance between the spool rack and the roof","B":"The minimum distance between the spool rack and the F cap","C":"The minimum distance between the connection point and a window","D":"The length of wire that comes out of the service mast for connection"},"answer":"B","type":"multiple_choice"},{"id":"e4q37","exam":4,"q_num":37,"question":"What is the number of porcelain insulators necessary for a 347/600V service entrance?","options":{"A":"1","B":"2","C":"3","D":"4"},"answer":"D","type":"multiple_choice"},{"id":"e4q38","exam":4,"q_num":38,"question":"For a fire alarm system, which of the following devices does NOT need to be replaced after it has been tripped? 1) Ionization, 2) Thermostatic, 3) Thermostatic fusible type, 4) Thermostatic bi-metallic type","options":{"A":"1 only","B":"2 and 4 only","C":"3 and 4 only","D":"1, 2, and 3 only"},"answer":"B","type":"multiple_choice"},{"id":"e4q39","exam":4,"q_num":39,"question":"With the following alarm system circuit illustration (ohmmeter, manual station, smoke detector, 10kΩ resistor in series), what would you read?","options":{"A":"Open (infinite resistance)","B":"A very low resistance (0 ohms)","C":"A resistance of approximately 10 kΩ","D":"A variable resistance depending on number of components"},"answer":"C","type":"multiple_choice"},{"id":"e4q40","exam":4,"q_num":40,"question":"In an alarm system, what is the MINIMUM height for a manual pull station from the finished floor to the center?","options":{"A":"1200mm","B":"1400mm","C":"1500mm","D":"1600mm"},"answer":"A","type":"multiple_choice"},{"id":"e4q41","exam":4,"q_num":41,"question":"In an intrusion alarm system, which components do NOT open? 1) A key contact for the door, 2) A level sensor, 3) A fire detector, 4) A glass break detector","options":{"A":"1 and 2 only","B":"1 and 3 only","C":"2 and 4 only","D":"1, 2, and 4 only"},"answer":"A","type":"multiple_choice"},{"id":"e4q42","exam":4,"q_num":42,"question":"Among the following choices, indicate the components of an intrusion system: 1) Fire alarm bell, 2) A card reader, 3) A movement detector, 4) A lockout access system","options":{"A":"1 and 2 only","B":"2 and 3 only","C":"3 and 4 only","D":"2, 3, and 4 only"},"answer":"D","type":"multiple_choice"},{"id":"e4q43","exam":4,"q_num":43,"question":"In an automated 'domotique' system, what are the types of communication between the panel and the devices? 1) Modbus, 2) Infrared, 3) Radio frequency, 4) IP communication","options":{"A":"1 and 2 only","B":"1 and 4 only","C":"2 and 3 only","D":"3 and 4 only"},"answer":"B","type":"multiple_choice"},{"id":"e4q44","exam":4,"q_num":44,"question":"According to the name plate (Model XPZ-46, Ph 1, V 120/240, Hz 50, kW 5, A 40), which CSA approved receptacle configuration is the appropriate twist-lock receptacle?","options":{"A":"Receptacle diagram A","B":"Receptacle diagram B","C":"Receptacle diagram C","D":"Receptacle diagram D"},"answer":"A","type":"multiple_choice"},{"id":"e4q45","exam":4,"q_num":45,"question":"Which of the following cables is NOT conform for direct burial?","options":{"A":"TWU","B":"NMD90","C":"USEI75","D":"ACWU90"},"answer":"B","type":"multiple_choice"},{"id":"e4q46","exam":4,"q_num":46,"question":"For which of the following uses are you NOT required to use anti-arc (AFCI) breakers?","options":{"A":"Living room plug","B":"Outdoor plug","C":"A plug in a kitchen more than 1.8m from the counter island","D":"A plug that is 120V fused more than 20 amps"},"answer":"D","type":"multiple_choice"},{"id":"e4q47","exam":4,"q_num":47,"question":"Kitchen layout: distance X between range = 350mm, distance Y between counter end and refrigerator = 300mm. Counter sections: 1.25m and 1.30m. According to the Electrical Code, what is the minimum number of receptacles required?","options":{"A":"2","B":"3","C":"4","D":"5"},"answer":"C","type":"multiple_choice"},{"id":"e4q48","exam":4,"q_num":48,"question":"For receptacles 5-15R and 5-20R CSA, what type of installation is conform to code requirements in a daycare?","options":{"A":"A receptacle powered by an AFCI (anti-arc) breaker","B":"A tamper resistant plug with marking (TR)","C":"A regular plug, as long as it is 'inaccessible'","D":"A regular plug, as long as it is more than 2m from finished floor"},"answer":"B","type":"multiple_choice"},{"id":"e4q49","exam":4,"q_num":49,"question":"Which of the following lighting installations is conform to the code?","options":{"A":"Light fixture weighing 4 kg held by the porcelain threaded screw","B":"Light fixture 600mm long held by the porcelain lampholder","C":"Light of 15 kg attached to an outlet box with a metal strap","D":"Light of 20 kg held by an outlet box suspended from the ceiling by a cable"},"answer":"D","type":"multiple_choice"},{"id":"e4q50","exam":4,"q_num":50,"question":"Which of the following installations is conform to the code? A) 20A-120V NMD 12AWG 13A Logements; B) 30A-347V AC90 10AWG 21A Industriel; C) 15A-600V HID 10A Industriel; D) 20A-600V AC90 12AWG culot moyen 13A Commercial","options":{"A":"20A-120V NMD 12AWG, 13A, Logements","B":"30A-347V AC90 10AWG, 21A, Industriel","C":"15A-600V HID, 10A, Industriel","D":"20A-600V AC90 12AWG culot moyen, 13A, Commercial"},"answer":"C","type":"multiple_choice"},{"id":"e4q51","exam":4,"q_num":51,"question":"The illustration represents a pulsed air generator controller. If relay S1 becomes defective and no longer functions, which scenario will occur? (Schematic: HTR1, HTR2, HTR3 — 5kW elements, AFB, S1 relay, thermostat)","options":{"A":"Only element HTR1 will function","B":"Only elements HTR1, HTR2, and HTR3 will function","C":"All elements will function on low voltage","D":"None of the elements will function"},"answer":"D","type":"multiple_choice"},{"id":"e4q52","exam":4,"q_num":52,"question":"The illustration represents the schematic for an electric furnace. If relay S4 no longer works, what would be the total power of the unit? (Schematic: 4×5 kW elements, TH thermostat, S séquenceur, AFB, HS, HTR, HL)","options":{"A":"0 watts","B":"5 kW","C":"10 kW","D":"15 kW"},"answer":"D","type":"multiple_choice"},{"id":"e4q54","exam":4,"q_num":54,"question":"What is the MINIMUM distance to respect between a safety switch and a motor?","options":{"A":"1m","B":"3m","C":"6m","D":"9m"},"answer":"D","type":"multiple_choice"},{"id":"e4q55","exam":4,"q_num":55,"question":"Determine the overload protection required according to the motor name plate: Model XPZ-46, V 600, A 12, Ph 3, HP 10, S.F. 1.2","options":{"A":"10A","B":"12A","C":"14A","D":"15A"},"answer":"C","type":"multiple_choice"},{"id":"e4q56","exam":4,"q_num":56,"question":"Among the following choices, which component can be used on an OUTPUT automated control system?","options":{"A":"A visual line break sensor (used on garage doors)","B":"A thermostat","C":"A flashing light sensor","D":"A photoelectric sensor"},"answer":"C","type":"multiple_choice"},{"id":"e4q58","exam":4,"q_num":58,"question":"The GRAFCET schematic shows steps with: Capteur 2 + Bouton 2 → Lumière Verte → Capteur de Fin de course + Capteur 2 → Pompe 1 → Pompe 2 with Capteur Niv 1 + Sélecteur 1 → Temporisation 10 sec. Indicate the condition that permits the motor to STOP.","options":{"A":"Time delay 10 sec","B":"Sensor 2 and button 2","C":"Sensor 2 and button 2 (alternate)","D":"Sensor level 1 and selector 1"},"answer":"A","type":"multiple_choice"},{"id":"e4q59","exam":4,"q_num":59,"question":"An industrial building has a 347V/600V 3-phase entrance. You must connect a machine requiring 3-phase, 72 amps at 208V. What is the minimum size transformer needed?","options":{"A":"15 kVA","B":"25 kVA","C":"30 kVA","D":"45 kVA"},"answer":"C","type":"multiple_choice"},{"id":"e4q60","exam":4,"q_num":60,"question":"Calculate the MAXIMUM protection required against overload for a 600V/120/240V transformer feeding a 200A panel.","options":{"A":"60A","B":"70A","C":"80A","D":"90A"},"answer":"D","type":"multiple_choice"},{"id":"e5q1","exam":5,"q_num":1,"question":"After locking out and tagging out an electrical circuit, which of the following steps must be taken BEFORE working on the circuit?","options":{"A":"Verify the presence of voltage on the equipment","B":"Dissipate residual or stored energy within the equipment","C":"Lock out the safety switch that provides power to the equipment","D":"Lock out all sources that provide energy to the equipment"},"answer":"A","type":"multiple_choice"},{"id":"e5q2","exam":5,"q_num":2,"question":"Among the following mechanical equipment, which can disperse energy without notice and must be locked-out-tagged-out before performing electrical work? 1) Pump, 2) Gearbox, 3) Conveyor belt","options":{"A":"1 and 2","B":"1 and 3","C":"2 and 3","D":"1, 2 and 3"},"answer":"D","type":"multiple_choice"},{"id":"e5q3","exam":5,"q_num":3,"question":"You must install a PVC junction box with a 1/2 inch EMT conduit on cement. Path: 600mm top, 680mm left, 2000mm bottom, 3000mm top-right. 3 conductors 12 AWG (2 hot, 1 neutral). What is the MINIMUM quantity of material (without waste)?","options":{"A":"6.2M EMT, 18.6M #12 AWG, 1 green #14, 5 clips, 7 couplings, 4 connectors, 1 box/cover, 7 Tapcon, 1 drill bit, 7 Marrettes","B":"6.2M EMT, 20.4M #12 AWG, 1 green #14, 5 clips, 5 couplings, 4 connectors, 1 box/cover, 9 Tapcon, 1 drill bit, 10 Marrettes","C":"6.2M PVC, 20.4M #12 AWG, 1 green #14, 7 clips, 1 PVC coupling, 4 PVC connectors, 7 Tapcon, 1 drill bit, 9 Marrettes","D":"6.2M EMT, 18.6M #12 AWG, 5 clips, 4 couplings, 4 connectors, 1 box/cover, 9 Tapcon, 1 drill bit, 9 Marrettes"},"answer":"C","type":"multiple_choice"},{"id":"e5q4","exam":5,"q_num":4,"question":"In the illustration showing 600/240/120V, indicate where you would place your voltmeter to have a reading of 120V. (Diagram: HT 3-phase transformer, 240V 3-phase 3-wire load, terminals labeled A, B, C with X1, X2, X3)","options":{"A":"Ax1 and Bx1","B":"Ax1 and Bx2","C":"Bx1 and Cx3","D":"Bx1 and Cx3"},"answer":"B","type":"multiple_choice"},{"id":"e5q5","exam":5,"q_num":5,"question":"Transformer ratio 2.88, primary H1 600V, 20 kW load. Which configuration reading is correct?","options":{"A":"A1 (11.1A) A2 (19.2A) V1 (208V)","B":"A1 (19.2A) A2 (57.7A) V3 (208V)","C":"A1 (11.1A) A3 (55.4A) V1 (600V)","D":"A2 (33.3A) A3 (96A) V2 (120V)"},"answer":"C","type":"multiple_choice"},{"id":"e5q6","exam":5,"q_num":6,"question":"When measuring between points (X) and (Z), what would be the resistance between test point 2 and the point of origin? (Circuit: 24V source, 50Ω series, then three 25Ω resistors in parallel, with test points labeled.)","options":{"A":"16.6 ohm","B":"25 ohm","C":"50 ohm","D":"75 ohm"},"answer":"D","type":"multiple_choice"},{"id":"e5q7","exam":5,"q_num":7,"question":"What would be the voltage in an electrical circuit with a resistance of 75 ohms and 3,500 watts? (E = √(R×P))","options":{"A":"46.7 volts","B":"120 volts","C":"512.4 volts","D":"262.5 kV"},"answer":"C","type":"multiple_choice"},{"id":"e5q8","exam":5,"q_num":8,"question":"Minimum transformer power for surveillance cameras: Camera 1 (24V AC, 0.25A), Camera 2 (12V AC, 0.20A), Camera 3 (24V AC, 0.30A)?","options":{"A":"0.75 VA","B":"15.6 VA","C":"24 VA","D":"60 VA"},"answer":"D","type":"multiple_choice"},{"id":"e5q9","exam":5,"q_num":9,"question":"In a circuit supplied by 2 conductors #12 AWG RW90 copper, what is the MAXIMUM distance before a 3% voltage drop? (347V 1-phase panel, 20A, 30°C, 16A load at 347V 1-phase)","options":{"A":"6.1m","B":"18.3m","C":"36.6m","D":"52.9m"},"answer":"D","type":"multiple_choice"},{"id":"e5q10","exam":5,"q_num":10,"question":"What is the power of a 2HP monophase motor at 230V?","options":{"A":"2.8 kW","B":"3.9 kW","C":"5.5 kW","D":"7.8 kW"},"answer":"A","type":"multiple_choice"},{"id":"e5q11","exam":5,"q_num":11,"question":"What is the secondary amperage of a 112.5 kVA transformer with characteristics 600/208/120V?","options":{"A":"108.3A","B":"312.3A","C":"468.8A","D":"540.9A"},"answer":"B","type":"multiple_choice"},{"id":"e5q12","exam":5,"q_num":12,"question":"A branch circuit powered by a dry-type 112.5 kVA 3-phase transformer, 600V primary, 208/120V secondary. If protection is installed only on the primary side, what would its capacity be?","options":{"A":"110A","B":"150A","C":"175A","D":"350A"},"answer":"B","type":"multiple_choice"},{"id":"e5q13","exam":5,"q_num":13,"question":"Which installation conforms to code requirements? (25 kVA transformer, RW90, 600V primary, 120/240V secondary, 4 AWG, 162A load, disjoncteur)","options":{"A":"20A Breaker, 12 AWG","B":"30A Breaker, 10 AWG","C":"35A Breaker, 8 AWG","D":"60A Breaker, 8 AWG"},"answer":"D","type":"multiple_choice"},{"id":"e5q14","exam":5,"q_num":14,"question":"When an electrical cable passes through a metal stud supporting gyproc, what is the minimum distance between the edge of the stud and the cable WITHOUT requiring stud protectors?","options":{"A":"32mm","B":"38mm","C":"51mm","D":"No protection is necessary"},"answer":"A","type":"multiple_choice"},{"id":"e5q15","exam":5,"q_num":15,"question":"What color tape is required to identify conductors for 347/600V three-phase installation in an EMT conduit used as ground?","options":{"A":"Red, Black, Blue","B":"Red, Black, Blue, Green","C":"Red, Black, Blue, White","D":"Red, Black, Blue, White, Green"},"answer":"D","type":"multiple_choice"},{"id":"e5q16","exam":5,"q_num":16,"question":"When installing an armed cable with aluminum conductors, 3c/3 AWG AL, into a conduit, what is the MAXIMUM length between two pull boxes if the voltage is unknown?","options":{"A":"15m","B":"35m","C":"45m","D":"You are not allowed to perform this installation"},"answer":"B","type":"multiple_choice"},{"id":"e5q17","exam":5,"q_num":17,"question":"What is the MINIMUM spacing required when installing a TECK 90 cable under a steel deck?","options":{"A":"150mm","B":"38mm","C":"32mm","D":"0mm, if installed in the visible portion of the steel deck"},"answer":"B","type":"multiple_choice"},{"id":"e5q18","exam":5,"q_num":18,"question":"What is the MAXIMUM fixation spacing (first and second straps) for EMT conduit nominal trade size 16mm (1/2 inch)?","options":{"A":"1.5m then 1m to junction box","B":"1.5m then 300mm to junction box","C":"750mm then 750mm to junction box","D":"1.5m then 1.5m to junction box"},"answer":"A","type":"multiple_choice"},{"id":"e5q19","exam":5,"q_num":19,"question":"What is the MINIMUM size rigid PVC conduit for 17 conductors: 6×10 AWG RW90 XLPE 600V without jacket + 11×12 AWG RW90 without jacket?","options":{"A":"21mm (3/4 inch)","B":"27mm (1 inch)","C":"35mm (1-1/4 inch)","D":"41mm (1-1/2 inch)"},"answer":"B","type":"multiple_choice"},{"id":"e5q20","exam":5,"q_num":20,"question":"To fix 2 PVC conduits on a common wall support, what is the maximum distance between straps for conduits 63mm (2-1/2 inch) and 27mm (1 inch)?","options":{"A":"First Strap: 750mm / Second Strap: 750mm","B":"First Strap: 1.2m / Second Strap: 1.2m","C":"First Strap: 1.5m / Second Strap: 1.5m","D":"First Strap: 1.8m / Second Strap: 1.8m"},"answer":"A","type":"multiple_choice"},{"id":"e5q21","exam":5,"q_num":21,"question":"What is the minimum size rigid PVC conduit used to insert a TECK cable of 74mm diameter?","options":{"A":"103mm","B":"129mm","C":"155mm","D":"200mm"},"answer":"A","type":"multiple_choice"},{"id":"e5q22","exam":5,"q_num":22,"question":"How many units of wire must be calculated when choosing a device box for the illustrated installation? (Box with multiple cables and a switch)","options":{"A":"5","B":"6","C":"7","D":"8"},"answer":"C","type":"multiple_choice"},{"id":"e5q23","exam":5,"q_num":23,"question":"What is the MINIMUM volume required for a device box with: 12/2 NMD + 12/2 NMD + 12/3 NMD cables, a receptacle and thermostat (plinthe électrique 500W)?","options":{"A":"230mL","B":"259mL","C":"318mL","D":"345mL"},"answer":"B","type":"multiple_choice"},{"id":"e5q24","exam":5,"q_num":24,"question":"Calculate the MINIMUM spacing (x) for a junction box if two TECK 90 cables (35mm diameter, 3c 1/0 RW90 XLPE 600V) enter on opposing sides.","options":{"A":"74mm","B":"100mm","C":"144mm","D":"218mm"},"answer":"C","type":"multiple_choice"},{"id":"e5q25","exam":5,"q_num":25,"question":"For a pull box in a straight line, what is the MINIMUM (X) size of box if the conduit is 103mm?","options":{"A":"618mm","B":"721mm","C":"824mm","D":"927mm"},"answer":"C","type":"multiple_choice"},{"id":"e5q26","exam":5,"q_num":26,"question":"What is the minimum spacing between two cable trays 610mm (24\") wide with cables of 41mm caliber?","options":{"A":"Vertical: 150mm / Horizontal: 300mm","B":"Vertical: 150mm / Horizontal: 600mm","C":"Vertical: 300mm / Horizontal: 600mm","D":"Vertical: 600mm / Horizontal: 300mm"},"answer":"B","type":"multiple_choice"},{"id":"e5q27","exam":5,"q_num":27,"question":"You must add two more TECK 90 cables 3c/10 AWG copper to a cable tray already containing 15 cables of 3 conductors. What is the MAXIMUM admissible current?","options":{"A":"12.5A","B":"15A","C":"20A","D":"30A"},"answer":"C","type":"multiple_choice"},{"id":"e5q28","exam":5,"q_num":28,"question":"In which locations is it PROHIBITED to install an electrical distribution panel? A) A framed cabinet, B) A stair well, C) A clothes closet","options":{"A":"3 only","B":"1 and 2 only","C":"1 and 3 only","D":"1, 2 and 3"},"answer":"D","type":"multiple_choice"},{"id":"e5q29","exam":5,"q_num":29,"question":"For a monophase transformer 10 kVA, 600V primary, 120V secondary — minimum size GROUND conductor on secondary side if mechanically protected and ground rod is prefabricated?","options":{"A":"6 AWG Aluminium","B":"4 AWG Aluminium","C":"2 AWG Aluminium","D":"1 AWG Aluminium"},"answer":"A","type":"multiple_choice"},{"id":"e5q31","exam":5,"q_num":31,"question":"Determine the minimum size copper conductor to assure proper bonding for a 25 kVA transformer (600V primary panel A, 120V/208V secondary panel B).","options":{"A":"10 AWG copper","B":"8 AWG copper","C":"6 AWG copper","D":"4 AWG copper"},"answer":"A","type":"multiple_choice"},{"id":"e5q32","exam":5,"q_num":32,"question":"Among the following, which assures good bonding continuity? 1) Omnibus bar, 2) Copper conductor, 3) Rigid metal conduit, 4) EMT conduit buried under cement","options":{"A":"1 and 2 only","B":"1 and 4 only","C":"1, 2, and 3 only","D":"2, 3, and 4 only"},"answer":"C","type":"multiple_choice"},{"id":"e5q33","exam":5,"q_num":33,"question":"What is the MAXIMUM height of a spool rack above finished grade if conductors pass over garage access over a 20M (66ft) length?","options":{"A":"4.7m (16.4ft)","B":"5.4m (17.7ft)","C":"5.6m (18.4ft)","D":"8m (26.2ft)"},"answer":"B","type":"multiple_choice"},{"id":"e5q35","exam":5,"q_num":35,"question":"Following a service call to a commercial building, which of the following voltages requires a Hydro-Quebec intervention when the nominal voltage is 347/600V?","options":{"A":"318/550","B":"306/530","C":"360/625","D":"322/622"},"answer":"B","type":"multiple_choice"},{"id":"e5q37","exam":5,"q_num":37,"question":"How many porcelain insulators are required on a spool rack for a 347/600V 600A polyphase installation?","options":{"A":"1","B":"2","C":"3","D":"4"},"answer":"D","type":"multiple_choice"},{"id":"e5q38","exam":5,"q_num":38,"question":"For a fire alarm system, which is an INAPPROPRIATE type of temperature detector?","options":{"A":"Ionization","B":"Thermovelocimetric detector","C":"Thermostatic fusible","D":"Thermostatic bimetallic"},"answer":"A","type":"multiple_choice"},{"id":"e5q40","exam":5,"q_num":40,"question":"In a fire alarm system, what is the MINIMUM distance from the ceiling for a smoke alarm installed on a wall?","options":{"A":"100mm","B":"300mm","C":"450mm","D":"600mm"},"answer":"B","type":"multiple_choice"},{"id":"e5q41","exam":5,"q_num":41,"question":"In an intrusion alarm system, which components do NOT need to be powered by the alarm panel? 1) A card reader, 2) A door contact, 3) A water level sensor, 4) A movement detector","options":{"A":"1 and 2 only","B":"2 and 3 only","C":"3 and 4 only","D":"1, 2, and 3 only"},"answer":"A","type":"multiple_choice"},{"id":"e5q42","exam":5,"q_num":42,"question":"Among the following, indicate the OUTPUTS in an intrusion alarm system: 1) A card reader, 2) A pilot light, 3) A movement detector, 4) An access locking system","options":{"A":"1 and 2 only","B":"2 and 4 only","C":"3 and 4 only","D":"2, 3, and 4 only"},"answer":"B","type":"multiple_choice"},{"id":"e5q43","exam":5,"q_num":43,"question":"Which of the following equipment can be controlled by a domotique system? 1) A doorbell, 2) A garage door, 3) A humidity sensor, 4) An air conditioning system","options":{"A":"2 and 4 only","B":"1 and 4 only","C":"2 and 3 only","D":"2, 3 and 4 only"},"answer":"A","type":"multiple_choice"},{"id":"e5q44","exam":5,"q_num":44,"question":"What is the MINIMUM horizontal distance between a shower, hot tub, or bath and a receptacle NOT protected by a GFCI circuit?","options":{"A":"500mm","B":"750mm","C":"1000mm","D":"1500mm"},"answer":"D","type":"multiple_choice"},{"id":"e5q45","exam":5,"q_num":45,"question":"Which of the following cables is NOT conform for direct burial?","options":{"A":"RA75","B":"RW90","C":"RWU90","D":"USEB90"},"answer":"B","type":"multiple_choice"},{"id":"e5q47a","exam":5,"q_num":"47a","question":"Regroupez les charges suivantes pour le meilleur équilibre des phases (347/600V triphasé): Charge #1=5.0kW 347V; Charge #2=4.0kW 347V; Charge #3=2.8kW 347V; Charge #4=7.5kW 600V 3ø; Charge #5=4.0kW 347V; Charge #6=3.6kW 347V","options":{"A":"Phase A: 1,3,4 / Phase B: 5,4 / Phase C: 2,6,4","B":"Phase A: 1,5,4 / Phase B: 3,4 / Phase C: 2,6,4","C":"Phase A: 1,6,4 / Phase B: 5,2,4 / Phase C: 3,6,4","D":"Phase A: 1,6,4 / Phase B: 3,4 / Phase C: 2,5,4"},"answer":"D","type":"multiple_choice"},{"id":"e5q47b","exam":5,"q_num":"47b","question":"Which schematic provides the best phase balance for a 3-phase distribution panel? (Totals — A: 48/34/35, B: 46/44/35, C: 41/38/44, D: 41/40/42)","options":{"A":"Schéma A (48/34/35)","B":"Schéma B (46/44/35)","C":"Schéma C (41/38/44)","D":"Schéma D (41/40/42)"},"answer":"D","type":"multiple_choice"},{"id":"e5q48","exam":5,"q_num":48,"question":"For which NEW building installations are you required to install a branch circuit for an electric vehicle charging station? 1) Individual dwelling with garage, 2) Duplex with vehicle covering, 3) Quadruplex with parking, 4) Building with 6 dwellings, 5) 8-plex condo with garage","options":{"A":"4 and 5 only","B":"1, 2, and 3 only","C":"3, 4, and 5 only","D":"1, 2, 3, 4, and 5"},"answer":"D","type":"multiple_choice"},{"id":"e5q50","exam":5,"q_num":50,"question":"Which of the following lighting installations is conform to the code?","options":{"A":"A light weighing 2.5 kg held by the threads of the lampholder","B":"A light 600mm long held by the threaded frame of the lamp holder","C":"A 15 kg light held by a wall outlet box fixed directly to house structure","D":"A 25 kg light held by an outlet box on the ceiling fixed onto a suspension bar"},"answer":"D","type":"multiple_choice"},{"id":"e5q51","exam":5,"q_num":51,"question":"What is the MINIMUM size fuse required to protect a 20 kW hot air furnace at 120/240V monophase?","options":{"A":"90A","B":"100A","C":"110A","D":"125A"},"answer":"A","type":"multiple_choice"},{"id":"e5q52","exam":5,"q_num":52,"question":"The pulsed air heater control: contractor HS is defective and stays OPEN. What happens when there is a demand for heat? (TH thermostat, S séquenceur, APB autoventilateur switch, HTR elements 5kW×4)","options":{"A":"The sequence would be interrupted","B":"Only elements HTR1, HTR2, HTR3 would work","C":"All heating elements would work on high speed","D":"The fan motor would work on high speed"},"answer":"D","type":"multiple_choice"},{"id":"e5q53","exam":5,"q_num":53,"question":"Pulsed air generator control diagram: relay S1 is defective and doesn't work. What would the total output be? (13A breaker, 24V transformer, TH thermostat, S1 séquenceur, APB, HTR 5kW×4, HS, RL high limit)","options":{"A":"0 watts","B":"5 kW","C":"10 kW","D":"15 kW"},"answer":"B","type":"multiple_choice"},{"id":"e5q54","exam":5,"q_num":54,"question":"Which of the following motors MUST be installed with a motor starter according to the code?","options":{"A":"A portable motor 1/2 HP on 120V","B":"A portable motor 1/4 HP on 120V","C":"A portable motor DC 1/3 HP on 120V","D":"A portable motor 1/3 HP on 120V connected to a receptacle with a plug"},"answer":"A","type":"multiple_choice"},{"id":"e5q55","exam":5,"q_num":55,"question":"What is the capacity of the overload relay for a wound-rotor motor 20HP, 3-phase, 230V connected to a 208V circuit with overload coefficient 1.10?","options":{"A":"80A","B":"92A","C":"102A","D":"110A"},"answer":"C","type":"multiple_choice"},{"id":"e5q56","exam":5,"q_num":56,"question":"Among the following, which module can be used for an automated control system at ENTRY (input)?","options":{"A":"A relay","B":"A horn","C":"A flashing light","D":"A limit switch"},"answer":"D","type":"multiple_choice"},{"id":"e5q58","exam":5,"q_num":58,"question":"GRAFCET schematic: Steps — Capteur 2 + Bouton 2 → Lumière Verte → Capteur Fin de course + Capteur 2 → Pompe → Pompe + Capteur Niv 1 + Sélecteur 1 → Temporisateur 2 sec. Indicate the condition to START the machine.","options":{"A":"Étape 2","B":"Étape 3","C":"Étape 4","D":"Étape 5"},"answer":"A","type":"multiple_choice"},{"id":"e5q59","exam":5,"q_num":59,"question":"Industrial entrance is 347/600V 3-phase. Connect a new machine: 3-phase, 70A, 208V. Identify the MINIMUM transformer capacity to install.","options":{"A":"15 kVA","B":"20 kVA","C":"30 kVA","D":"45 kVA"},"answer":"C","type":"multiple_choice"},{"id":"e5q60","exam":5,"q_num":60,"question":"Calculate the MAXIMUM overcurrent protection required for a 600V/120/208V transformer feeding a 400A panel.","options":{"A":"125A","B":"150A","C":"175A","D":"200A"},"answer":"D","type":"multiple_choice"},{"id":"e6q9","exam":6,"q_num":9,"question":"What is the maximum drop in voltage in a main feeder or branch circuit?","options":{"A":"1%","B":"3%","C":"5%","D":"6%"},"answer":"B","type":"multiple_choice"},{"id":"e6q21","exam":6,"q_num":21,"question":"What is the minimal size of a PVC conduit used to insert TECK cables of 37mm diameter?","options":{"A":"53mm","B":"63mm","C":"78mm","D":"91mm"},"answer":"A","type":"multiple_choice"},{"id":"e6q24","exam":6,"q_num":24,"question":"To pull wires in a straight line, what is the minimum length (x) of the draw box if the nominal size of the conduit is 129mm? (V6 = Diameter 103mm, V2 = Diameter 129mm)","options":{"A":"774mm","B":"903mm","C":"1032mm","D":"1132mm"},"answer":"C","type":"multiple_choice"},{"id":"e6q26","exam":6,"q_num":26,"question":"What is the minimum clearance to respect between a cable path (tray) and a ceiling?","options":{"A":"150mm","B":"300mm","C":"600mm","D":"1000mm"},"answer":"B","type":"multiple_choice"},{"id":"e6q33","exam":6,"q_num":33,"question":"When conductors are installed in parallel, what is the minimum dimension of the cabinet for a 400A, 120V/240V transformer?","options":{"A":"1200mm × 1200mm × 300mm","B":"750mm × 750mm × 250mm","C":"750mm × 750mm × 300mm","D":"900mm × 900mm × 300mm"},"answer":"C","type":"multiple_choice"},{"id":"e6q36","exam":6,"q_num":36,"question":"In which condition do we use a bonding flange on an electrical connection mast?","options":{"A":"For an aerial connection","B":"When a section of PVC is placed between the mast and the measuring box","C":"When the electrical connection mast is placed directly on the measuring box","D":"When the conduit section between the measuring box and connection box is made of PVC"},"answer":"A","type":"multiple_choice"},{"id":"e6q38","exam":6,"q_num":38,"question":"For a fire alarm system, which type of detector is INAPPROPRIATE as a temperature-rising detector? 1) Ionization detector, 2) Metric thermostatic, 3) Thermostatic fuse type, 4) Thermostatic bi-metallic","options":{"A":"2","B":"2 and 4","C":"3 and 4","D":"1, 2 and 3"},"answer":"A","type":"multiple_choice"}];</script>
+<script>
+// ── State
+let queue=[], current=0, correct=0, wrong=0, skipped=0, answered=[], filterVal='all';
+
+// ── Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    filterVal=btn.dataset.filter;
+    const n=filterVal==='all'?QUESTIONS.length:QUESTIONS.filter(q=>String(q.exam)===filterVal).length;
+    document.getElementById('total-count').textContent=n;
+  });
+});
+
+document.getElementById('start-btn').addEventListener('click',startQuiz);
+document.getElementById('quit-btn').addEventListener('click',restartQuiz);
+document.getElementById('skip-btn').addEventListener('click',doSkip);
+document.getElementById('next-btn').addEventListener('click',advanceQ);
+document.getElementById('finish-btn').addEventListener('click',showEnd);
+
+function startQuiz(){
+  const pool=filterVal==='all'?[...QUESTIONS]:QUESTIONS.filter(q=>String(q.exam)===filterVal);
+  queue=shuffle([...pool]);
+  current=correct=wrong=skipped=0;answered=[];
+  show('quiz-screen');hide('start-screen');hide('end-screen');
+  renderQ();updateScore();
+}
+
+function restartQuiz(){
+  show('start-screen');hide('quiz-screen');hide('end-screen');
+  document.getElementById('total-count').textContent=QUESTIONS.length;
+  document.querySelector('.filter-btn[data-filter="all"]').click();
+}
+
+function renderQ(){
+  const q=queue[current];
+  if(!q)return;
+  const total=queue.length;
+  const pct=Math.round((current/total)*100);
+  id('prog-text').textContent=`Question ${current+1} of ${total}`;
+  id('prog-pct').textContent=pct+'%';
+  id('prog-fill').style.width=pct+'%';
+  id('sc-remain').textContent=total-current;
+  id('skip-btn').style.display='';
+  id('next-btn').style.display='none';
+  id('finish-btn').style.display='none';
+
+  const opts=q.options&&Object.keys(q.options).length>0;
+  let html='';
+  if(opts){
+    html=Object.entries(q.options).map(([l,t])=>
+      `<button class="opt-btn" data-letter="${l}" onclick="pick(this,'${esc(q.id)}','${l}','${esc(q.answer)}')">
+        <span class="opt-letter">${l}</span><span>${escH(t)}</span></button>`
+    ).join('');
+  } else {
+    html=`<div class="reveal-wrap">
+      <button class="reveal-btn" onclick="revealAns(this)">Reveal Answer</button>
+      <div class="reveal-answer">${escH(q.answer||'See answer sheet')}</div>
+    </div>`;
+  }
+
+  id('q-container').innerHTML=`<div class="q-card">
+    <div class="q-header">
+      <div class="q-num">Q${escH(String(q.q_num))}</div>
+      <div><div class="q-exam">Exam ${q.exam}</div><div class="q-text">${escH(q.question)}</div></div>
+    </div>
+    <div class="options">${html}</div>
+    <div class="feedback" id="fb-${esc(q.id)}"></div>
+  </div>`;
+}
+
+function pick(btn,qid,letter,correctAns){
+  btn.closest('.options').querySelectorAll('.opt-btn').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.letter===correctAns) b.classList.add('show-correct');
+  });
+  const ok=letter===correctAns;
+  btn.classList.add(ok?'correct':'wrong');
+  const fb=document.getElementById('fb-'+qid);
+  if(ok){correct++;fb.className='feedback fb-correct';fb.textContent='✓ Correct!';}
+  else{wrong++;fb.className='feedback fb-wrong';fb.textContent='✗ Incorrect — correct answer: '+correctAns;}
+  answered.push({q:queue[current],userAnswer:letter,isCorrect:ok});
+  updateScore();showNext();
+}
+
+function revealAns(btn){
+  btn.style.display='none';
+  btn.nextElementSibling.classList.add('shown');
+  answered.push({q:queue[current],userAnswer:'revealed',isCorrect:true});
+  correct++;updateScore();showNext();
+}
+
+function doSkip(){
+  answered.push({q:queue[current],userAnswer:null,isCorrect:false});
+  skipped++;updateScore();advanceQ();
+}
+
+function showNext(){
+  const isLast=current===queue.length-1;
+  id('skip-btn').style.display='none';
+  if(isLast) id('finish-btn').style.display='';
+  else id('next-btn').style.display='';
+}
+
+function advanceQ(){
+  current++;
+  if(current>=queue.length){showEnd();return;}
+  renderQ();
+}
+
+function updateScore(){
+  const n=correct+wrong+skipped;
+  id('sc-correct').textContent=correct;
+  id('sc-wrong').textContent=wrong;
+  id('sc-pct').textContent=n>0?Math.round((correct/n)*100)+'%':'—';
+  id('sc-remain').textContent=queue.length-n;
+}
+
+function showEnd(){
+  hide('quiz-screen');show('end-screen');
+  const total=answered.length;
+  const pct=total>0?Math.round((correct/total)*100):0;
+  const pass=pct>=60;
+  id('end-pct').textContent=pct+'%';
+  id('end-pct').style.color=pass?'var(--green)':'var(--red)';
+  id('end-label').textContent=`${correct} correct out of ${total}`;
+  const g=id('end-grade');
+  g.textContent=pass?'✓ PASS':'✗ FAIL';
+  g.className='end-grade '+(pass?'pass':'fail');
+  id('end-correct').textContent=correct;
+  id('end-wrong').textContent=wrong;
+  id('end-skipped').textContent=skipped;
+
+  const rc=id('review-container');
+  rc.innerHTML=answered.map(({q,userAnswer,isCorrect})=>{
+    const opts=q.options&&Object.keys(q.options).length>0;
+    const optsHTML=opts
+      ?Object.entries(q.options).map(([l,t])=>{
+          let cls='ro';
+          if(l===q.answer)cls+=' ca';
+          else if(l===userAnswer&&!isCorrect)cls+=' uw';
+          return `<div class="${cls}"><strong>${l}.</strong> ${escH(t)}</div>`;
+        }).join('')
+      :`<div class="ro ca">Answer: ${escH(q.answer||'')}</div>`;
+    const status=isCorrect
+      ?'<span style="color:var(--green)">✓ Correct</span>'
+      :'<span style="color:var(--red)">✗ Wrong</span>';
+    return `<div class="review-item ${isCorrect?'rc':'rw'}">
+      <div class="q-exam" style="margin-bottom:6px">Exam ${q.exam} · Q${escH(String(q.q_num))} · ${status}</div>
+      <div class="review-q">${escH(q.question)}</div>
+      <div class="review-opts">${optsHTML}</div>
+    </div>`;
+  }).join('');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function id(x){return document.getElementById(x);}
+function show(x){id(x).style.display='block';}
+function hide(x){id(x).style.display='none';}
+function esc(s){return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+function escH(s){if(!s)return '';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+</script>
+</body>
+</html>

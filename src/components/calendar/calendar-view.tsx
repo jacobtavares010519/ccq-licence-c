@@ -28,6 +28,8 @@ interface CalendarViewProps {
   tasks: unknown[];
   sites: unknown[];
   employees: unknown[];
+  initialYear: number;
+  initialMonth: number;
 }
 
 function startOfMonth(year: number, month: number) {
@@ -40,10 +42,10 @@ function daysInMonth(year: number, month: number) {
 
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-export function CalendarView({ hours, tasks }: CalendarViewProps) {
+export function CalendarView({ hours, tasks, initialYear, initialMonth }: CalendarViewProps) {
   const today = new Date();
-  const [year, setYear] = useState(today.getFullYear());
-  const [month, setMonth] = useState(today.getMonth());
+  const [year, setYear] = useState(initialYear);
+  const [month, setMonth] = useState(initialMonth);
   const [selected, setSelected] = useState<string | null>(today.toISOString().split("T")[0]);
 
   const hoursRows = hours as HoursRow[];

@@ -11,8 +11,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Separator } from "@/components/ui/separator";
 import { ItemForm } from "./item-form";
 import { MovementForm } from "./movement-form";
+import { ErrorAlert } from "@/components/ui/error-alert";
 import { deleteItem } from "@/app/actions/inventory";
 import type { Item, ItemLocation, InventoryMovement, Truck, Site } from "@/lib/database.types";
+import { locationLabel } from "@/lib/location-utils";
 
 interface ItemDetailProps {
   item: Item;
@@ -20,16 +22,6 @@ interface ItemDetailProps {
   movements: InventoryMovement[];
   trucks: Truck[];
   sites: Site[];
-}
-
-function locationLabel(type: string, id: string | null, trucks: Truck[], sites: Site[]) {
-  if (type === "Office") return "Office";
-  if (type === "Truck") {
-    const t = trucks.find((t) => t.id === id);
-    return t ? `Truck ${t.number} — ${t.name}` : "Truck";
-  }
-  const s = sites.find((s) => s.id === id);
-  return s ? `Site: ${s.name}` : "Site";
 }
 
 const conditionVariant: Record<string, "success" | "warning" | "secondary"> = {
@@ -53,16 +45,24 @@ export function ItemDetail({ item, locations, movements, trucks, sites }: ItemDe
   const totalQty = locations.reduce((sum, l) => sum + l.quantity, 0);
   const isLowStock = item.category === "Consumable" && totalQty <= item.min_qty;
 
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+
   function handleDelete() {
     if (!confirm(`Delete "${item.name}"? This cannot be undone.`)) return;
+    setDeleteError(null);
     startTransition(async () => {
-      await deleteItem(item.id);
-      router.push("/inventory");
+      const result = await deleteItem(item.id);
+      if (result?.error) {
+        setDeleteError(result.error);
+      } else {
+        router.push("/inventory");
+      }
     });
   }
 
   return (
     <div className="space-y-4">
+      {deleteError && <ErrorAlert message={deleteError} />}
       {/* Back + Actions */}
       <div className="flex items-center justify-between gap-3">
         <Link href="/inventory" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">

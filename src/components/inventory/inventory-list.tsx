@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ItemForm } from "./item-form";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type { ItemWithLocations, Truck, Site, ItemCategory } from "@/lib/database.types";
+import { locationLabel } from "@/lib/location-utils";
 
 interface InventoryListProps {
   items: ItemWithLocations[];
@@ -29,16 +30,6 @@ const conditionColors: Record<string, string> = {
   NeedsRepair: "warning",
   Retired: "secondary",
 };
-
-function locationLabel(type: string, id: string | null, trucks: Truck[], sites: Site[]) {
-  if (type === "Office") return "Office";
-  if (type === "Truck") {
-    const t = trucks.find((t) => t.id === id);
-    return t ? `Truck ${t.number}` : "Truck";
-  }
-  const s = sites.find((s) => s.id === id);
-  return s ? `Site: ${s.name}` : "Site";
-}
 
 export function InventoryList({ items, trucks, sites }: InventoryListProps) {
   const [search, setSearch] = useState("");

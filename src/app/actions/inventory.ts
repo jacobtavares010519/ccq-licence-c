@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import type { ItemCategory, ItemCondition, LocationType, MovementAction } from "@/lib/database.types";
 
 // ── Items ─────────────────────────────────────────────────────────────────────
@@ -61,7 +62,26 @@ export async function recordMovement(data: {
   date: string;
   notes?: string;
 }) {
+  if (data.quantity <= 0) {
+    return { error: "Quantity must be greater than zero." };
+  }
+
   const supabase = await createClient();
+
+  // For Transfer and Consume, verify source has sufficient stock
+  if (data.from_loc_type) {
+    const available = await getLocationQty(
+      supabase,
+      data.item_id,
+      data.from_loc_type,
+      data.from_loc_id ?? null
+    );
+    if (available < data.quantity) {
+      return {
+        error: `Insufficient stock at source. Available: ${available}, requested: ${data.quantity}.`,
+      };
+    }
+  }
 
   // Insert movement record
   const { error: moveError } = await supabase
@@ -81,62 +101,91 @@ export async function recordMovement(data: {
 
   // Update item_locations
   if (data.from_loc_type) {
-    await adjustLocationQty(
+    const err = await adjustLocationQty(
       supabase,
       data.item_id,
       data.from_loc_type,
       data.from_loc_id ?? null,
       -data.quantity
     );
+    if (err) return { error: err };
   }
   if (data.to_loc_type) {
-    await adjustLocationQty(
+    const err = await adjustLocationQty(
       supabase,
       data.item_id,
       data.to_loc_type,
       data.to_loc_id ?? null,
       data.quantity
     );
+    if (err) return { error: err };
   }
 
   revalidatePath("/inventory");
-  if (data.from_loc_id) revalidatePath(`/inventory/${data.item_id}`);
+  revalidatePath(`/inventory/${data.item_id}`);
   return { success: true };
 }
 
+async function getLocationQty(
+  supabase: SupabaseClient,
+  item_id: string,
+  location_type: LocationType,
+  location_id: string | null
+): Promise<number> {
+  let query = supabase
+    .from("item_locations")
+    .select("quantity")
+    .eq("item_id", item_id)
+    .eq("location_type", location_type);
+
+  query = location_id
+    ? query.eq("location_id", location_id)
+    : query.is("location_id", null);
+
+  const { data } = await query.maybeSingle();
+  return (data as { quantity: number } | null)?.quantity ?? 0;
+}
+
+// Returns an error string on failure, null on success.
 async function adjustLocationQty(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  supabase: any,
+  supabase: SupabaseClient,
   item_id: string,
   location_type: LocationType,
   location_id: string | null,
   delta: number
-) {
-  const query = supabase
+): Promise<string | null> {
+  // Build query with proper reassignment on each chain call
+  let query = supabase
     .from("item_locations")
     .select("id, quantity")
     .eq("item_id", item_id)
     .eq("location_type", location_type);
 
-  if (location_id) {
-    query.eq("location_id", location_id);
-  } else {
-    query.is("location_id", null);
-  }
+  query = location_id
+    ? query.eq("location_id", location_id)
+    : query.is("location_id", null);
 
-  const { data: existing } = await query.single();
+  const { data: existing, error: fetchError } = await query.maybeSingle();
+  if (fetchError) return fetchError.message;
 
   if (existing) {
-    await supabase
+    const { error } = await supabase
       .from("item_locations")
-      .update({ quantity: existing.quantity + delta, updated_at: new Date().toISOString() })
-      .eq("id", existing.id);
+      .update({
+        quantity: (existing as { id: string; quantity: number }).quantity + delta,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("id", (existing as { id: string; quantity: number }).id);
+    if (error) return error.message;
   } else {
-    await supabase.from("item_locations").insert({
+    const { error } = await supabase.from("item_locations").insert({
       item_id,
       location_type,
       location_id: location_id || null,
       quantity: delta,
     });
+    if (error) return error.message;
   }
+
+  return null;
 }

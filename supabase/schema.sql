@@ -78,9 +78,21 @@ create table item_locations (
   location_type location_type not null,
   location_id uuid,  -- null = Office (singleton), truck id, or site id
   quantity numeric not null default 0,
-  updated_at timestamptz default now(),
-  unique (item_id, location_type, location_id)
+  updated_at timestamptz default now()
+  -- NOTE: uniqueness is enforced via partial indexes below, NOT a standard
+  -- unique constraint. A standard unique(item_id, location_type, location_id)
+  -- fails for Office rows because NULL != NULL in Postgres, allowing duplicates.
 );
+
+-- Partial unique index for Truck/Site locations (location_id is non-null)
+create unique index item_locations_with_loc_uk
+  on item_locations(item_id, location_type, location_id)
+  where location_id is not null;
+
+-- Partial unique index for Office locations (location_id is null)
+create unique index item_locations_office_uk
+  on item_locations(item_id, location_type)
+  where location_id is null;
 
 create table inventory_movements (
   id uuid primary key default uuid_generate_v4(),
@@ -90,7 +102,7 @@ create table inventory_movements (
   from_loc_id uuid,
   to_loc_type location_type,
   to_loc_id uuid,
-  quantity numeric not null,
+  quantity numeric not null check (quantity > 0),
   date date not null default current_date,
   notes text,
   created_at timestamptz default now()
@@ -105,7 +117,7 @@ create table hours (
   employee_id uuid not null references employees(id) on delete cascade,
   site_id uuid not null references sites(id) on delete cascade,
   date date not null,
-  hours numeric not null,
+  hours numeric not null check (hours > 0),
   notes text,
   created_at timestamptz default now()
 );
@@ -155,39 +167,3 @@ create policy "auth_all" on item_locations for all to authenticated using (true)
 create policy "auth_all" on inventory_movements for all to authenticated using (true) with check (true);
 create policy "auth_all" on hours for all to authenticated using (true) with check (true);
 create policy "auth_all" on tasks for all to authenticated using (true) with check (true);
-
--- =============================================
--- FUNCTION: update item_locations on movement
--- =============================================
-create or replace function apply_inventory_movement()
-returns trigger language plpgsql security definer as $$
-begin
-  -- Deduct from source
-  if new.from_loc_type is not null then
-    insert into item_locations(item_id, location_type, location_id, quantity)
-    values (new.item_id, new.from_loc_type, new.from_loc_id, -new.quantity)
-    on conflict (item_id, location_type, coalesce(location_id, '00000000-0000-0000-0000-000000000000'::uuid))
-    do update set quantity = item_locations.quantity - new.quantity, updated_at = now();
-
-    -- Actually use the unique constraint properly
-    update item_locations
-    set quantity = quantity - new.quantity, updated_at = now()
-    where item_id = new.item_id
-      and location_type = new.from_loc_type
-      and (location_id = new.from_loc_id or (location_id is null and new.from_loc_id is null));
-  end if;
-
-  -- Add to destination
-  if new.to_loc_type is not null then
-    insert into item_locations(item_id, location_type, location_id, quantity)
-    values (new.item_id, new.to_loc_type, new.to_loc_id, new.quantity)
-    on conflict (item_id, location_type, location_id)
-    do update set quantity = item_locations.quantity + new.quantity, updated_at = now();
-  end if;
-
-  return new;
-end;
-$$;
-
--- Simpler approach: manage item_locations from app layer for reliability
--- The trigger above is provided as reference; app-layer mutations are preferred.

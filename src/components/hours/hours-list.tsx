@@ -127,7 +127,8 @@ function formatDate(d: string) {
 function calcWeekHours(hours: HoursRow[]) {
   const now = new Date();
   const monday = new Date(now);
-  monday.setDate(now.getDate() - now.getDay() + 1);
+  // ISO week: Mon=0 … Sun=6 — avoids the getDay()=0 Sunday bug
+  monday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
   monday.setHours(0, 0, 0, 0);
 
   return hours

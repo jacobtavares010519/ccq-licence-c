@@ -5,10 +5,10 @@ import { Dashboard } from "@/components/dashboard/dashboard";
 export default async function DashboardPage() {
   const supabase = await createClient();
 
-  // Calculate date range for this week
+  // Calculate this week's Monday (ISO week: Mon=0 … Sun=6)
   const today = new Date();
   const monday = new Date(today);
-  monday.setDate(today.getDate() - today.getDay() + 1);
+  monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
   const mondayStr = monday.toISOString().split("T")[0];
 
   const [

@@ -1,4 +1,5 @@
 "use client";
+import { ErrorAlert } from "@/components/ui/error-alert";
 
 import { useState, useTransition } from "react";
 import { recordMovement } from "@/app/actions/inventory";
@@ -7,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { AlertCircle } from "lucide-react";
+
 import type { Item, Truck, Site, LocationType, MovementAction } from "@/lib/database.types";
 
 interface MovementFormProps {
@@ -163,12 +164,7 @@ export function MovementForm({ item, trucks, sites, onSuccess, defaultAction = "
         <Textarea id="notes" name="notes" rows={2} placeholder="Optional" />
       </div>
 
-      {error && (
-        <div className="flex items-center gap-2 rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">
-          <AlertCircle className="h-4 w-4 shrink-0" />
-          {error}
-        </div>
-      )}
+      {error && <ErrorAlert message={error} />}
 
       <Button type="submit" disabled={isPending} className="w-full">
         {isPending ? "Recording…" : "Record Movement"}

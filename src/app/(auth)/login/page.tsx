@@ -2,6 +2,7 @@
 import { ErrorAlert } from "@/components/ui/error-alert";
 
 import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { login } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 
 export default function LoginPage() {
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
@@ -20,6 +22,7 @@ export default function LoginPage() {
     startTransition(async () => {
       const result = await login(formData);
       if (result?.error) setError(result.error);
+      else router.replace("/dashboard");
     });
   }
 
@@ -27,7 +30,7 @@ export default function LoginPage() {
     <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle>Sign in</CardTitle>
-        <CardDescription>Enter your credentials to access NOVOLT</CardDescription>
+        <CardDescription>Enter any email and password to access the demo</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">

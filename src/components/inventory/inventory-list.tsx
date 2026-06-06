@@ -17,6 +17,7 @@ interface InventoryListProps {
   items: ItemWithLocations[];
   trucks: Truck[];
   sites: Site[];
+  onRefresh?: () => void;
 }
 
 const categoryIcons: Record<ItemCategory, React.ElementType> = {
@@ -31,7 +32,7 @@ const conditionColors: Record<string, string> = {
   Retired: "secondary",
 };
 
-export function InventoryList({ items, trucks, sites }: InventoryListProps) {
+export function InventoryList({ items, trucks, sites, onRefresh }: InventoryListProps) {
   const [search, setSearch] = useState("");
   const [filterCat, setFilterCat] = useState<string>("all");
   const [addOpen, setAddOpen] = useState(false);
@@ -80,7 +81,7 @@ export function InventoryList({ items, trucks, sites }: InventoryListProps) {
             <DialogHeader>
               <DialogTitle>Add Item</DialogTitle>
             </DialogHeader>
-            <ItemForm onSuccess={() => setAddOpen(false)} />
+            <ItemForm onSuccess={() => { setAddOpen(false); onRefresh?.(); }} />
           </DialogContent>
         </Dialog>
       </div>

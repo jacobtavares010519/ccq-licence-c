@@ -19,6 +19,7 @@ interface SiteDetailProps {
   tasks: Task[];
   hours: Hours[];
   employees: Employee[];
+  onRefresh?: () => void;
 }
 
 const statusVariant: Record<SiteStatus, "success" | "warning" | "secondary"> = {
@@ -33,7 +34,7 @@ const taskStatusVariant: Record<TaskStatus, "default" | "warning" | "success"> =
   Done: "success",
 };
 
-export function SiteDetail({ site, tasks, hours, employees }: SiteDetailProps) {
+export function SiteDetail({ site, tasks, hours, employees, onRefresh }: SiteDetailProps) {
   const router = useRouter();
   const [editOpen, setEditOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
@@ -54,7 +55,7 @@ export function SiteDetail({ site, tasks, hours, employees }: SiteDetailProps) {
       InProgress: "Done",
       Done: "ToDo",
     };
-    startTransition(async () => { await updateTaskStatus(taskId, next[current]); });
+    startTransition(async () => { await updateTaskStatus(taskId, next[current]); onRefresh?.(); });
   }
 
   const empMap = Object.fromEntries(employees.map((e) => [e.id, e.name]));
@@ -181,7 +182,7 @@ export function SiteDetail({ site, tasks, hours, employees }: SiteDetailProps) {
           <DialogHeader>
             <DialogTitle>Edit Site</DialogTitle>
           </DialogHeader>
-          <SiteForm site={site} onSuccess={() => setEditOpen(false)} />
+          <SiteForm site={site} onSuccess={() => { setEditOpen(false); onRefresh?.(); }} />
         </DialogContent>
       </Dialog>
     </div>

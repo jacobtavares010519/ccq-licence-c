@@ -16,7 +16,7 @@ const statusVariant: Record<SiteStatus, "success" | "warning" | "secondary"> = {
   OnHold: "warning",
 };
 
-export function SitesList({ sites }: { sites: Site[] }) {
+export function SitesList({ sites, onRefresh }: { sites: Site[]; onRefresh?: () => void }) {
   const [search, setSearch] = useState("");
   const [addOpen, setAddOpen] = useState(false);
 
@@ -51,7 +51,7 @@ export function SitesList({ sites }: { sites: Site[] }) {
             <DialogHeader>
               <DialogTitle>Add Job Site</DialogTitle>
             </DialogHeader>
-            <SiteForm onSuccess={() => setAddOpen(false)} />
+            <SiteForm onSuccess={() => { setAddOpen(false); onRefresh?.(); }} />
           </DialogContent>
         </Dialog>
       </div>

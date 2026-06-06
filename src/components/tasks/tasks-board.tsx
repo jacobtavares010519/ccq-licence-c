@@ -26,6 +26,7 @@ interface TasksBoardProps {
   tasks: unknown[];
   sites: Site[];
   employees: Employee[];
+  onRefresh?: () => void;
 }
 
 const COLUMNS: { status: TaskStatus; label: string; color: string }[] = [
@@ -40,19 +41,19 @@ const statusVariant: Record<TaskStatus, "default" | "warning" | "success"> = {
   Done: "success",
 };
 
-export function TasksBoard({ tasks, sites, employees }: TasksBoardProps) {
+export function TasksBoard({ tasks, sites, employees, onRefresh }: TasksBoardProps) {
   const [addOpen, setAddOpen] = useState(false);
   const [editTask, setEditTask] = useState<TaskRow | null>(null);
   const [isPending, startTransition] = useTransition();
   const rows = tasks as TaskRow[];
 
   function moveTask(id: string, status: TaskStatus) {
-    startTransition(async () => { await updateTaskStatus(id, status); });
+    startTransition(async () => { await updateTaskStatus(id, status); onRefresh?.(); });
   }
 
   function handleDelete(id: string) {
     if (!confirm("Delete this task?")) return;
-    startTransition(async () => { await deleteTask(id); });
+    startTransition(async () => { await deleteTask(id); onRefresh?.(); });
   }
 
   return (
@@ -68,7 +69,7 @@ export function TasksBoard({ tasks, sites, employees }: TasksBoardProps) {
             <DialogHeader>
               <DialogTitle>New Task</DialogTitle>
             </DialogHeader>
-            <TaskForm sites={sites} employees={employees} onSuccess={() => setAddOpen(false)} />
+            <TaskForm sites={sites} employees={employees} onSuccess={() => { setAddOpen(false); onRefresh?.(); }} />
           </DialogContent>
         </Dialog>
       </div>
@@ -146,7 +147,7 @@ export function TasksBoard({ tasks, sites, employees }: TasksBoardProps) {
               task={editTask}
               sites={sites}
               employees={employees}
-              onSuccess={() => setEditTask(null)}
+              onSuccess={() => { setEditTask(null); onRefresh?.(); }}
             />
           )}
         </DialogContent>

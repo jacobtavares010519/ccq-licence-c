@@ -15,9 +15,10 @@ import type { Employee, Truck } from "@/lib/database.types";
 interface EmployeesListProps {
   employees: Employee[];
   trucks: Truck[];
+  onRefresh?: () => void;
 }
 
-export function EmployeesList({ employees, trucks }: EmployeesListProps) {
+export function EmployeesList({ employees, trucks, onRefresh }: EmployeesListProps) {
   const [addEmpOpen, setAddEmpOpen] = useState(false);
   const [addTruckOpen, setAddTruckOpen] = useState(false);
   const [editEmp, setEditEmp] = useState<Employee | null>(null);
@@ -30,6 +31,7 @@ export function EmployeesList({ employees, trucks }: EmployeesListProps) {
   async function handleDelete(emp: Employee) {
     if (!confirm(`Remove ${emp.name}?`)) return;
     await deleteEmployee(emp.id);
+    onRefresh?.();
   }
 
   return (
@@ -45,7 +47,7 @@ export function EmployeesList({ employees, trucks }: EmployeesListProps) {
             <DialogHeader>
               <DialogTitle>Add Truck</DialogTitle>
             </DialogHeader>
-            <TruckForm employees={employees} onSuccess={() => setAddTruckOpen(false)} />
+            <TruckForm employees={employees} onSuccess={() => { setAddTruckOpen(false); onRefresh?.(); }} />
           </DialogContent>
         </Dialog>
         <Dialog open={addEmpOpen} onOpenChange={setAddEmpOpen}>
@@ -58,7 +60,7 @@ export function EmployeesList({ employees, trucks }: EmployeesListProps) {
             <DialogHeader>
               <DialogTitle>Add Employee</DialogTitle>
             </DialogHeader>
-            <EmployeeForm trucks={trucks} onSuccess={() => setAddEmpOpen(false)} />
+            <EmployeeForm trucks={trucks} onSuccess={() => { setAddEmpOpen(false); onRefresh?.(); }} />
           </DialogContent>
         </Dialog>
       </div>
@@ -91,7 +93,7 @@ export function EmployeesList({ employees, trucks }: EmployeesListProps) {
             <EmployeeForm
               employee={editEmp}
               trucks={trucks}
-              onSuccess={() => setEditEmp(null)}
+              onSuccess={() => { setEditEmp(null); onRefresh?.(); }}
             />
           )}
         </DialogContent>

@@ -1,43 +1,34 @@
-"use server";
+import * as db from "@/lib/db";
 
-import { revalidatePath } from "next/cache";
-import { createClient } from "@/lib/supabase/server";
+type R = Promise<{ error?: string; success?: boolean }>;
 
-export async function createHours(formData: FormData) {
-  const supabase = await createClient();
-  const { error } = await supabase.from("hours").insert({
+export async function createHours(formData: FormData): R {
+  const hours = parseFloat(formData.get("hours") as string);
+  if (isNaN(hours) || hours <= 0) return { error: "Hours must be greater than zero." };
+  db.createHours({
     employee_id: formData.get("employee_id") as string,
     site_id: formData.get("site_id") as string,
     date: formData.get("date") as string,
-    hours: parseFloat(formData.get("hours") as string),
+    hours,
     notes: (formData.get("notes") as string) || null,
   });
-  if (error) return { error: error.message };
-  revalidatePath("/hours");
   return { success: true };
 }
 
-export async function updateHours(id: string, formData: FormData) {
-  const supabase = await createClient();
-  const { error } = await supabase
-    .from("hours")
-    .update({
-      employee_id: formData.get("employee_id") as string,
-      site_id: formData.get("site_id") as string,
-      date: formData.get("date") as string,
-      hours: parseFloat(formData.get("hours") as string),
-      notes: (formData.get("notes") as string) || null,
-    })
-    .eq("id", id);
-  if (error) return { error: error.message };
-  revalidatePath("/hours");
+export async function updateHours(id: string, formData: FormData): R {
+  const hours = parseFloat(formData.get("hours") as string);
+  if (isNaN(hours) || hours <= 0) return { error: "Hours must be greater than zero." };
+  db.updateHours(id, {
+    employee_id: formData.get("employee_id") as string,
+    site_id: formData.get("site_id") as string,
+    date: formData.get("date") as string,
+    hours,
+    notes: (formData.get("notes") as string) || null,
+  });
   return { success: true };
 }
 
-export async function deleteHours(id: string) {
-  const supabase = await createClient();
-  const { error } = await supabase.from("hours").delete().eq("id", id);
-  if (error) return { error: error.message };
-  revalidatePath("/hours");
+export async function deleteHours(id: string): R {
+  db.deleteHours(id);
   return { success: true };
 }

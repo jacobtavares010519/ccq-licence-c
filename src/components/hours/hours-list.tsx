@@ -24,6 +24,7 @@ interface HoursListProps {
   hours: unknown[];
   employees: Employee[];
   sites: Site[];
+  onRefresh?: () => void;
 }
 
 function groupByDate(hours: HoursRow[]): [string, HoursRow[]][] {
@@ -36,7 +37,7 @@ function groupByDate(hours: HoursRow[]): [string, HoursRow[]][] {
   return Array.from(map.entries()).sort((a, b) => b[0].localeCompare(a[0]));
 }
 
-export function HoursList({ hours, employees, sites }: HoursListProps) {
+export function HoursList({ hours, employees, sites, onRefresh }: HoursListProps) {
   const [addOpen, setAddOpen] = useState(false);
   const rows = hours as HoursRow[];
   const grouped = groupByDate(rows);
@@ -45,6 +46,7 @@ export function HoursList({ hours, employees, sites }: HoursListProps) {
   async function handleDelete(id: string) {
     if (!confirm("Delete this entry?")) return;
     await deleteHours(id);
+    onRefresh?.();
   }
 
   return (
@@ -63,7 +65,7 @@ export function HoursList({ hours, employees, sites }: HoursListProps) {
             <DialogHeader>
               <DialogTitle>Log Hours</DialogTitle>
             </DialogHeader>
-            <HoursForm employees={employees} sites={sites} onSuccess={() => setAddOpen(false)} />
+            <HoursForm employees={employees} sites={sites} onSuccess={() => { setAddOpen(false); onRefresh?.(); }} />
           </DialogContent>
         </Dialog>
       </div>

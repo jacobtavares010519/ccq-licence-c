@@ -1,46 +1,37 @@
-import { createClient } from "@/lib/supabase/server";
+"use client";
+
+import { useEffect, useState, useCallback } from "react";
 import { AppShell } from "@/components/layout/app-shell";
 import { LowStockBanner } from "@/components/inventory/low-stock-banner";
 import { InventoryList } from "@/components/inventory/inventory-list";
-import type { ItemWithLocations, Item, ItemLocation, Truck, Site } from "@/lib/database.types";
+import * as db from "@/lib/db";
+import type { ItemWithLocations, Truck, Site } from "@/lib/database.types";
 
-async function getData() {
-  const supabase = await createClient();
+export default function InventoryPage() {
+  const [items, setItems] = useState<ItemWithLocations[]>([]);
+  const [trucks, setTrucks] = useState<Truck[]>([]);
+  const [sites, setSites] = useState<Site[]>([]);
 
-  const [itemsRes, locationsRes, trucksRes, sitesRes] = await Promise.all([
-    supabase.from("items").select("*").order("name"),
-    supabase.from("item_locations").select("*"),
-    supabase.from("trucks").select("*").order("number"),
-    supabase.from("sites").select("*").order("name"),
-  ]);
+  const load = useCallback(() => {
+    const rawItems = db.getItems();
+    const locations = db.getItemLocations();
+    const enriched: ItemWithLocations[] = rawItems.map((item) => {
+      const itemLocs = locations.filter((l) => l.item_id === item.id);
+      const total = itemLocs.reduce((sum, l) => sum + l.quantity, 0);
+      return { ...item, item_locations: itemLocs, total_quantity: total, is_low_stock: item.category === "Consumable" && total <= item.min_qty };
+    });
+    setItems(enriched);
+    setTrucks(db.getTrucks());
+    setSites(db.getSites());
+  }, []);
 
-  const items: Item[] = itemsRes.data || [];
-  const locations: ItemLocation[] = locationsRes.data || [];
-  const trucks: Truck[] = trucksRes.data || [];
-  const sites: Site[] = sitesRes.data || [];
-
-  const enriched: ItemWithLocations[] = items.map((item) => {
-    const itemLocs = locations.filter((l) => l.item_id === item.id);
-    const total = itemLocs.reduce((sum, l) => sum + l.quantity, 0);
-    return {
-      ...item,
-      item_locations: itemLocs,
-      total_quantity: total,
-      is_low_stock: item.category === "Consumable" && total <= item.min_qty,
-    };
-  });
-
-  return { items: enriched, trucks, sites };
-}
-
-export default async function InventoryPage() {
-  const { items, trucks, sites } = await getData();
+  useEffect(() => { load(); }, [load]);
 
   return (
     <AppShell title="Inventory">
       <div className="space-y-4 max-w-5xl mx-auto">
         <LowStockBanner items={items} />
-        <InventoryList items={items} trucks={trucks} sites={sites} />
+        <InventoryList items={items} trucks={trucks} sites={sites} onRefresh={load} />
       </div>
     </AppShell>
   );

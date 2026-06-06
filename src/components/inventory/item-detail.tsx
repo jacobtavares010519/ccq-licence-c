@@ -22,6 +22,7 @@ interface ItemDetailProps {
   movements: InventoryMovement[];
   trucks: Truck[];
   sites: Site[];
+  onRefresh?: () => void;
 }
 
 const conditionVariant: Record<string, "success" | "warning" | "secondary"> = {
@@ -36,7 +37,7 @@ const actionColors: Record<string, string> = {
   Consume: "text-red-700",
 };
 
-export function ItemDetail({ item, locations, movements, trucks, sites }: ItemDetailProps) {
+export function ItemDetail({ item, locations, movements, trucks, sites, onRefresh }: ItemDetailProps) {
   const router = useRouter();
   const [editOpen, setEditOpen] = useState(false);
   const [moveOpen, setMoveOpen] = useState(false);
@@ -183,7 +184,7 @@ export function ItemDetail({ item, locations, movements, trucks, sites }: ItemDe
           <DialogHeader>
             <DialogTitle>Edit Item</DialogTitle>
           </DialogHeader>
-          <ItemForm item={item} onSuccess={() => setEditOpen(false)} />
+          <ItemForm item={item} onSuccess={() => { setEditOpen(false); onRefresh?.(); }} />
         </DialogContent>
       </Dialog>
 
@@ -193,7 +194,7 @@ export function ItemDetail({ item, locations, movements, trucks, sites }: ItemDe
           <DialogHeader>
             <DialogTitle>Record Movement — {item.name}</DialogTitle>
           </DialogHeader>
-          <MovementForm item={item} trucks={trucks} sites={sites} onSuccess={() => setMoveOpen(false)} />
+          <MovementForm item={item} trucks={trucks} sites={sites} onSuccess={() => { setMoveOpen(false); onRefresh?.(); }} />
         </DialogContent>
       </Dialog>
     </div>

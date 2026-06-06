@@ -1,28 +1,35 @@
-import { createClient } from "@/lib/supabase/server";
+"use client";
+
+import { useEffect, useState, useCallback } from "react";
 import { AppShell } from "@/components/layout/app-shell";
 import { TasksBoard } from "@/components/tasks/tasks-board";
+import * as db from "@/lib/db";
 import type { Employee, Site } from "@/lib/database.types";
 
-export default async function TasksPage() {
-  const supabase = await createClient();
+export default function TasksPage() {
+  const [tasks, setTasks] = useState<unknown[]>([]);
+  const [sites, setSites] = useState<Site[]>([]);
+  const [employees, setEmployees] = useState<Employee[]>([]);
 
-  const [tasksRes, sitesRes, employeesRes] = await Promise.all([
-    supabase
-      .from("tasks")
-      .select("*, sites(name), employees(name)")
-      .order("due_date", { ascending: true, nullsFirst: false })
-      .order("created_at"),
-    supabase.from("sites").select("*").order("name"),
-    supabase.from("employees").select("*").eq("status", "Active").order("name"),
-  ]);
+  const load = useCallback(() => {
+    const allSites = db.getSites();
+    const allEmployees = db.getEmployees();
+    const raw = db.getTasks();
+    const enriched = raw.map((t) => ({
+      ...t,
+      sites: { name: allSites.find((s) => s.id === t.site_id)?.name ?? "" },
+      employees: t.employee_id ? { name: allEmployees.find((e) => e.id === t.employee_id)?.name ?? "" } : null,
+    }));
+    setTasks(enriched);
+    setSites(allSites);
+    setEmployees(allEmployees.filter((e) => e.status === "Active"));
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
 
   return (
     <AppShell title="Tasks">
-      <TasksBoard
-        tasks={(tasksRes.data || []) as unknown[]}
-        sites={(sitesRes.data || []) as Site[]}
-        employees={(employeesRes.data || []) as Employee[]}
-      />
+      <TasksBoard tasks={tasks} sites={sites} employees={employees} onRefresh={load} />
     </AppShell>
   );
 }

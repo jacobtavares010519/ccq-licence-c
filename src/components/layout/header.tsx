@@ -1,7 +1,8 @@
 "use client";
 
 import { Menu, LogOut } from "lucide-react";
-import { logout } from "@/app/actions/auth";
+import { useRouter } from "next/navigation";
+import { logout } from "@/lib/auth-store";
 import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
@@ -10,6 +11,13 @@ interface HeaderProps {
 }
 
 export function Header({ title, onMenuClick }: HeaderProps) {
+  const router = useRouter();
+
+  function handleLogout() {
+    logout();
+    router.replace("/login");
+  }
+
   return (
     <header className="flex h-16 items-center justify-between border-b border-slate-200 bg-white px-4 shrink-0">
       <div className="flex items-center gap-3">
@@ -22,12 +30,10 @@ export function Header({ title, onMenuClick }: HeaderProps) {
         </button>
         <h1 className="text-lg font-semibold text-[#0F172A]">{title}</h1>
       </div>
-      <form action={logout}>
-        <Button variant="ghost" size="sm" type="submit" className="gap-1.5 text-slate-500">
-          <LogOut className="h-4 w-4" />
-          <span className="hidden sm:inline">Sign out</span>
-        </Button>
-      </form>
+      <Button variant="ghost" size="sm" onClick={handleLogout} className="gap-1.5 text-slate-500">
+        <LogOut className="h-4 w-4" />
+        <span className="hidden sm:inline">Sign out</span>
+      </Button>
     </header>
   );
 }

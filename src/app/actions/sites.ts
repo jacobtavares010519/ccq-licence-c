@@ -1,13 +1,10 @@
-"use server";
-
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import * as db from "@/lib/db";
 import type { SiteStatus } from "@/lib/database.types";
 
-export async function createSite(formData: FormData) {
-  const supabase = await createClient();
-  const { error } = await supabase.from("sites").insert({
+type R = Promise<{ error?: string; success?: boolean }>;
+
+export async function createSite(formData: FormData): R {
+  db.createSite({
     name: formData.get("name") as string,
     client: (formData.get("client") as string) || null,
     address: (formData.get("address") as string) || null,
@@ -16,35 +13,23 @@ export async function createSite(formData: FormData) {
     end_date: (formData.get("end_date") as string) || null,
     notes: (formData.get("notes") as string) || null,
   });
-  if (error) return { error: error.message };
-  revalidatePath("/sites");
   return { success: true };
 }
 
-export async function updateSite(id: string, formData: FormData) {
-  const supabase = await createClient();
-  const { error } = await supabase
-    .from("sites")
-    .update({
-      name: formData.get("name") as string,
-      client: (formData.get("client") as string) || null,
-      address: (formData.get("address") as string) || null,
-      status: formData.get("status") as SiteStatus,
-      start_date: (formData.get("start_date") as string) || null,
-      end_date: (formData.get("end_date") as string) || null,
-      notes: (formData.get("notes") as string) || null,
-    })
-    .eq("id", id);
-  if (error) return { error: error.message };
-  revalidatePath("/sites");
-  revalidatePath(`/sites/${id}`);
+export async function updateSite(id: string, formData: FormData): R {
+  db.updateSite(id, {
+    name: formData.get("name") as string,
+    client: (formData.get("client") as string) || null,
+    address: (formData.get("address") as string) || null,
+    status: formData.get("status") as SiteStatus,
+    start_date: (formData.get("start_date") as string) || null,
+    end_date: (formData.get("end_date") as string) || null,
+    notes: (formData.get("notes") as string) || null,
+  });
   return { success: true };
 }
 
-export async function deleteSite(id: string) {
-  const supabase = await createClient();
-  const { error } = await supabase.from("sites").delete().eq("id", id);
-  if (error) return { error: error.message };
-  revalidatePath("/sites");
-  redirect("/sites");
+export async function deleteSite(id: string): R {
+  db.deleteSite(id);
+  return { success: true };
 }
